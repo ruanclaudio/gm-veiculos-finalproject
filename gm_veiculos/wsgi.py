@@ -1,5 +1,5 @@
 """
-WSGI config for jm_veiculos project.
+WSGI config for gm_veiculos project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'jm_veiculos.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'gm_veiculos.settings')
 
 application = get_wsgi_application()
