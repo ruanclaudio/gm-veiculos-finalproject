@@ -45,7 +45,7 @@
         <div class="row2">
             <a class="link" href="/">Home</a>
 
-            <a class="link" href="/about">Quem Somos</a>
+            <a class="link" href="/sobre">Quem Somos</a>
 
             <a class="btn-link" href="/venda">
                 <div class="btn">

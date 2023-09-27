@@ -19,19 +19,16 @@
 
 <style>
 
-/*==========RESET==========*/
+/*==========R==========*/
 
 :global(*) {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 :global(a) {
     text-decoration: none;
 }
-
-/*==========LAYOUT==========*/
 
 :global(html) {
     background: #5B1111;
