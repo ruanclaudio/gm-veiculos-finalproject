@@ -4,7 +4,7 @@
  
 <footer>
     <a href="/">
-        <img src="{logo}" alt="logo">
+        <img class="logo" src="{logo}" alt="logo">
     </a>
 
     <div class="infos">
@@ -26,7 +26,7 @@
             </div>
 
             <div class="info">
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="18" height="20" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M17 12.5C15.8 12.5 14.5 12.3 13.4 11.9H13.1C12.8 11.9 12.6 12 12.4 12.2L10.2 14.4C7.4 12.9 5 10.6 3.6 7.8L5.8 5.6C6.1 5.3 6.2 4.9 6 4.6C5.7 3.5 5.5 2.2 5.5 1C5.5 0.5 5 0 4.5 0H1C0.5 0 0 0.5 0 1C0 10.4 7.6 18 17 18C17.5 18 18 17.5 18 17V13.5C18 13 17.5 12.5 17 12.5ZM2 2H3.5C3.6 2.9 3.8 3.8 4 4.6L2.8 5.8C2.4 4.6 2.1 3.3 2 2ZM16 16C14.7 15.9 13.4 15.6 12.2 15.2L13.4 14C14.2 14.2 15.1 14.4 16 14.4V16Z" fill="#BBBBBB"/>
                 </svg>
 
@@ -76,6 +76,48 @@ h2 {
 .row1 {
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 28px;
 }
+
+@media screen and (max-width: 1300px) {
+
+    .logo {
+        width: 80%;
+    }
+
+    .row1 {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    h2 {
+        font-size: 16px;
+    }
+
+    svg {
+        height: 18px;
+    }
+}
+
+@media screen and (max-width: 750px) {
+
+    .logo {
+        min-width: 140px;
+        width: 60%;
+    }
+
+    .row1 {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    h2 {
+        font-size: 10px;
+    }
+
+    svg {
+        height: 12px;
+    }
+}
+
 </style>
