@@ -75,7 +75,7 @@ h2 {
 
 .row1 {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 28px;
 }
 

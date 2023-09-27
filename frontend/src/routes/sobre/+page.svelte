@@ -51,7 +51,7 @@ main {
 }
 
 h1 {
-    color: #FFF;
+    color: #F29F12;
     text-align: center;
     font-family: Racing Sans One;
     font-size: 64px;
@@ -60,7 +60,7 @@ h1 {
 p {
     color: #FFF;
     font-family: Racing Sans One;
-    font-size: 20px;
+    font-size: 22px;
 }
 
 img {
@@ -71,7 +71,7 @@ img {
     p {
         color: #FFF;
         font-family: Racing Sans One;
-        font-size: 16px;
+        font-size: 18px;
     }
 }
 
