@@ -10,10 +10,10 @@ from django.db import models
 
 class CondicoesVeiculos(models.Model):
     condicao = models.CharField(max_length=25)
-    ano = models.TextField()  # This field type is a guess.
+    ano = models.PositiveSmallIntegerField()
     cor = models.CharField(max_length=50)
     quilometragem = models.IntegerField()
-    leilao = models.IntegerField()
+    leilao = models.BooleanField()
 
     class Meta:
         managed = False
