@@ -51,7 +51,7 @@ footer {
 
 h2 {
     color: #BBB;
-    font-family: Roboto Condensed;
+    font-family: 'Roboto Condensed', sans-serif;
     font-size: 18px;
 }
 

@@ -36,13 +36,13 @@ main {
 
 h4 {
     color: #BBB;
-    font-family: Roboto Condensed;
+    font-family: 'Roboto Condensed', sans-serif;
     font-size: 16px;
 }
 
 h3 {
     color: #FFF;
-    font-family: Roboto Condensed;
+    font-family: 'Roboto Condensed', sans-serif;
     font-size: 16px;
 }
 
