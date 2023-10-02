@@ -1,8 +1,10 @@
-
+<script lang="ts">
+    import Veiculo from "$lib/components/VeiculoDisplay.svelte"
+</script>
 
 <main>
     <div class="form-wrapper">
-        <h1>Solicitar venda de veículo</h1>
+        <h1>Solicitar compra de veículo</h1>
 
         <form action="">
             <div class="tel">
@@ -15,9 +17,8 @@
                 <textarea name="mensagem" id="mensagem"></textarea>
             </div>
 
-            <div class="img">
-                <label for="img">Foto: </label> <br>
-                <input type="file" name="img" id="img-form">
+            <div class="veiculo">
+                <Veiculo></Veiculo>
             </div>
 
             <button id="btn-form" type="submit">Enviar</button>
@@ -27,6 +28,7 @@
 
 
 <style>
+
 main {
     margin: 5% 20%;
 }
@@ -86,11 +88,6 @@ input, textarea {
     width: 80%;
     min-height: 200px;
     
-    margin-top: 16px;
-}
-
-#img-form {
-    width: 60%;
     margin-top: 16px;
 }
 
