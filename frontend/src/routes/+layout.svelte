@@ -10,28 +10,23 @@
     import Footer from '$lib/components/Footer.svelte';
 </script>
 
-
 <Nav></Nav>
 
 <slot/>
 
 <Footer></Footer>
 
-
 <style>
-
-/*==========R==========*/
 
 :global(*) {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-:global(a) {
-    text-decoration: none;
-}
-
 :global(html) {
     background: #5B1111;
+}
+:global(a) {
+    text-decoration: none;
 }
 </style>

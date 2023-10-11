@@ -38,9 +38,11 @@
 
 
 <style>
+    
 footer {
     display: flex;
-    padding: 24px 64px;
+    padding: 24px 32px;
+    gap: 12px;
     justify-content: space-between;
     align-items: center;
 
@@ -56,6 +58,11 @@ h2 {
 }
 
 /*==========CLASSES==========*/
+
+.logo {
+    width: 100%;
+    min-width: 100px;
+}
 
 .info {
     display: flex;
@@ -88,6 +95,7 @@ h2 {
     .row1 {
         flex-direction: column;
         gap: 24px;
+        align-items: flex-start;
     }
 
     h2 {
@@ -102,13 +110,14 @@ h2 {
 @media screen and (max-width: 750px) {
 
     .logo {
-        min-width: 140px;
         width: 60%;
+        min-width: 120px;
     }
 
     .row1 {
         flex-direction: column;
         gap: 8px;
+        align-items: flex-start;
     }
 
     h2 {
