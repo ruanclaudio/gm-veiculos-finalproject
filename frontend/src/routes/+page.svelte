@@ -8,7 +8,7 @@
 
 <main>
     <div class="context">
-        <h4>4 resultados encontrados</h4>
+        <h4>resultados encontrados</h4>
 
         <div class="sort">
             <h3>Ordenar por: Maior preço</h3>
