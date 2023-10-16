@@ -1,7 +1,7 @@
-from django.urls import path
+from django.urls import re_path
 
-from . import views
+from .views import VeiculosList
 
 urlpatterns = [
-    path("", views.veiculos_list, name="veiculos_list"),
+     re_path(r'^$', VeiculosList.as_view(), name='veiculos-list'),
 ]
