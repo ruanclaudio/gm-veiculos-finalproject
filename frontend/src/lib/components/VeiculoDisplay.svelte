@@ -76,6 +76,9 @@ h3 {
 
     cursor: pointer;
 }
+.vendaButton:hover {
+    background: #412222d8;
+}
 
 .text {
     display: flex;

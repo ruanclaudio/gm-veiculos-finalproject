@@ -101,6 +101,7 @@ h3 {
 
 .display {
     display: flex;
+    justify-content: space-between;
     gap: 64px;
 }
 
