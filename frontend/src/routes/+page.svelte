@@ -2,13 +2,37 @@
     import ad from "$lib/assets/ad.png"
 
     import Filter from "$lib/components/Filter.svelte"
+    import VeiculoDisplay from "$lib/components/VeiculoDisplay.svelte"
+
+
+    // let promise = async () => {
+
+    //     fetch("")
+    // } 
+
+    // promise
+
+    let veiculos = [
+        {
+            id: 1
+        },
+        {
+            id: 2
+        },
+        {
+            id: 3
+        },
+        {
+            id: 4
+        }
+    ]
 </script>
 
 <img class="banner" src="{ad}" alt="ad">
 
 <main>
     <div class="context">
-        <h4>resultados encontrados</h4>
+        <h4>{veiculos.length} resultados encontrados</h4>
 
         <div class="sort">
             <h3>Ordenar por: Maior preço</h3>
@@ -22,7 +46,11 @@
     <div class="display">
         <Filter/>
 
-        <Filter/>
+        <div class="displayWrapper">
+            {#each veiculos as veiculo (veiculo.id)}
+                <VeiculoDisplay {veiculo}/>
+            {/each}
+        </div>
     </div>
 </main>
 
@@ -76,4 +104,13 @@ h3 {
     gap: 64px;
 }
 
+.displayWrapper {
+    display: flex;
+    width: 944px;
+    padding: 24px 0px 24px 24px;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    align-self: stretch;
+}
 </style>
