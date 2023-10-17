@@ -1,5 +1,5 @@
 <script lang="ts">
-    import local from "$lib/assets/logo.png"
+    import local from "$lib/assets/local.png"
 
     interface Veiculo {
         id: number
@@ -83,6 +83,7 @@ h3 {
 .text {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: flex-start;
     gap: 32px;
     align-self: stretch;
@@ -122,8 +123,37 @@ h3 {
 }
 
 img {
-    width: 100%;
-    width: 320px;
-    height: 220px;
+    width: 450px;
+    height: 260px;
 }
+
+@media screen and (max-width: 1400px) {
+
+    .resultado {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .vendaButton {
+        padding: 12px 12px;
+        font-size: 16px;
+        margin-top: 24px;
+    }
+
+    .row2 {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .text {
+        gap: 12px;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
 </style>
