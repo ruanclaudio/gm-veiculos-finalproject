@@ -65,6 +65,7 @@ h4 {
     font-family: Roboto;
     font-size: 16px;
     text-decoration-line: underline;
+    cursor: pointer;
 }
 h3 {
     color: #000;

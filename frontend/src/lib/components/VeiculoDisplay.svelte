@@ -29,10 +29,10 @@
                 <h3>Pagamento</h3>
             </div>
 
-            <div class="vendaButton">Tenho interesse <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <a href="/compra" class="vendaButton">Tenho interesse <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.2652 12.5V7.7H0.0344083L0 5.288H10.2652V0.5L16 6.5L10.2652 12.5Z" fill="#F29F12"/>
               </svg>
-            </div>
+            </a>
         </div>
     </div>
 </div>
