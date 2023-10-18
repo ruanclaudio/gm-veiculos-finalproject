@@ -9,7 +9,7 @@ from django.db import models
 
 
 class CondicoesVeiculos(models.Model):
-    condicao = models.CharField(max_length=25)
+    condicao = models.BooleanField()
     ano = models.PositiveSmallIntegerField()
     cor = models.CharField(max_length=50)
     quilometragem = models.IntegerField()
