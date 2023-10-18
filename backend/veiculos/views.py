@@ -1,12 +1,39 @@
+from backend.models import InteresseCompra, InteresseVenda
 from .models import *
 from .serializers import VeiculoSerializer
 
 from django.shortcuts import render
 from django.core.paginator import Paginator
-from django.http import request
+from django.http import request, JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView
+
+def receber_interesse_venda(request):
+    if request.method == 'POST':
+        telefone = request.POST.get('telefone')
+        email = request.POST.get('email')
+        mensagem = request.POST.get('mensagem')
+        
+        interesse = InteresseVenda(telefone=telefone, email=email, mensagem=mensagem)
+        interesse.save()
+        
+        return JsonResponse({'mensagem': 'Interesse de venda registrado com sucesso!'})
+    else:
+        return JsonResponse({'mensagem': 'Apenas solicitações POST são suportadas.'})
+    
+def receber_interesse_compra(request):
+    if request.method == 'POST':
+        telefone = request.POST.get('telefone')
+        email = request.POST.get('email')
+        mensagem = request.POST.get('mensagem')
+        
+        interesse = InteresseCompra(telefone=telefone, email=email, mensagem=mensagem)
+        interesse.save()
+        
+        return JsonResponse({'mensagem': 'Interesse de venda registrado com sucesso!'})
+    else:
+        return JsonResponse({'mensagem': 'Apenas solicitações POST são suportadas.'})
 
 class VeiculosList(ListAPIView):
     serializer_class = VeiculoSerializer
