@@ -1,4 +1,4 @@
-from backend.models import InteresseCompra, InteresseVenda
+from backend.veiculos.models import InteresseCompra, InteresseVenda
 from .models import *
 from .serializers import VeiculoSerializer
 
