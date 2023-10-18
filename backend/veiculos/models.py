@@ -18,14 +18,6 @@ class CondicoesVeiculos(models.Model):
         managed = False
         db_table = 'condicoes_veiculos'
 
-class ImagensIvenda(models.Model):
-    url_imagem = models.CharField(max_length=200, blank=True, null=True)
-    ivenda = models.ForeignKey('InteresseVenda', models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'imagens_ivenda'
-
 class InteresseCompra(models.Model):
     telefone = models.CharField(max_length=11)
     email = models.CharField(max_length=150)

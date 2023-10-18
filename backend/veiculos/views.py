@@ -1,5 +1,4 @@
-from backend.veiculos.models import InteresseCompra, InteresseVenda
-from .models import *
+from .models import InteresseCompra, InteresseVenda, Veiculos
 from .serializers import VeiculoSerializer
 
 from django.shortcuts import render
