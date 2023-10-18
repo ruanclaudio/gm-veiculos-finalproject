@@ -1,9 +1,11 @@
 <script lang="ts">
+
     import ad from "$lib/assets/ad.png"
 
     import Filter from "$lib/components/Filter.svelte"
     import VeiculoDisplay from "$lib/components/VeiculoDisplay.svelte"
-
+    
+    let precoSelect: any
 
     // let promise = async () => {
 
@@ -35,11 +37,12 @@
         <h4>{veiculos.length} resultados encontrados</h4>
 
         <div class="sort">
-            <h3>Ordenar por: Maior preço</h3>
-
-            <svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1.41 0.789978L6 5.37998L10.59 0.789978L12 2.20998L6 8.20998L0 2.20998L1.41 0.789978Z" fill="white"/>
-            </svg>
+            <select name="" id="" bind:this={precoSelect}>
+                <option value="">Preço crescente</option>
+                <option value="">option 2</option>
+                <option value="">option 3</option>
+                <option value="">option 4</option>
+            </select>
         </div>
     </div>
 
@@ -70,12 +73,6 @@ h4 {
     font-size: 16px;
 }
 
-h3 {
-    color: #FFF;
-    font-family: 'Roboto Condensed', sans-serif;
-    font-size: 16px;
-}
-
 /*==========CLASSES==========*/
 
 .banner {
@@ -89,6 +86,16 @@ h3 {
     justify-content: flex-end;
     align-items: center;
     gap: 4px;
+}
+select {
+    background-color: #222;
+    padding: 4px 4px;
+    border: 1px solid white;
+    width: 100%;
+    color: #fff;
+    font-family: Roboto;
+    font-size: 16px; 
+    cursor: pointer;
 }
 
 /*==========LAYOUT==========*/
@@ -139,8 +146,8 @@ h3 {
 
 @media screen and (max-width: 550px) {
     h4,
-    h3 {
-        font-size: 12px;
+    select {
+        font-size: 16px;
     }
 }
 </style>

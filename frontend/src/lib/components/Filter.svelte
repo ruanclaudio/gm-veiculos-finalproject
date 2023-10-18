@@ -1,10 +1,62 @@
+<script lang="ts">
+
+let tipoFilterActive = 1
+let tipoFilter
+
+let precoSelect: any
+let precoFilter: any
+
+let marcaSelect: any
+let marcaFilter: any
+
+let modeloSelect: any
+let modeloFilter: any
+
+let usadoCheckbox: any
+let usadoFilter: any
+
+let leilaoCheckbox: any
+let leilaoFilter: any
+
+function SearchHandle() {
+    
+    precoFilter = precoSelect.value
+    marcaFilter = marcaSelect.value
+    modeloFilter = modeloSelect.value
+    usadoFilter = usadoCheckbox.checked
+    leilaoFilter = leilaoCheckbox.checked
+
+    if (tipoFilterActive == 1) {
+        tipoFilter = "carro" 
+    }
+    else {
+        tipoFilter = "moto"
+    }
+
+    //url
+}
+
+function ClearHandle() {
+
+    tipoFilterActive = 1
+    precoSelect.value = ""
+    marcaSelect.value = ""
+    modeloSelect.value = ""
+    usadoCheckbox.checked = false
+    leilaoCheckbox.checked = false
+
+    
+}
+
+</script>
+
 <div class="top">
     <div class="main-filter">
-        <button class="tipoButton">Carros</button>
-        <button class="tipoButton">Motos</button>
+        <button class="tipoButton {tipoFilterActive == 1 ? "filter-active" : ''}" on:click={() => {tipoFilterActive = 1}} >Carros</button>
+        <button class="tipoButton {tipoFilterActive == 2 ? "filter-active" : ''}" on:click={() => {tipoFilterActive = 2}} >Motos</button>
     </div>
 
-    <h4>Limpar filtros</h4>
+    <button on:click={ClearHandle}><h4 >Limpar filtros</h4></button>
 </div>
 
 <hr>
@@ -12,7 +64,7 @@
     <div class="preco-select">
         <label for="preco-select"><h3>Faixa de preço</h3></label>
     
-        <select name="preco-select" id="preco-select">
+        <select name="preco-select" id="preco-select" bind:this={precoSelect}>
             <option value="Option 1">Option 1</option>
             <option value="Option 2">Option 2</option>
             <option value="Option 3">Option 3</option>
@@ -24,7 +76,7 @@
     <div class="marca-select">
         <label for="marca-select"><h3>Marca</h3></label>
 
-        <select name="marca-select" id="marca-select">
+        <select name="marca-select" id="marca-select" bind:this={marcaSelect}>
             <option value="Option 1">Option 1</option>
             <option value="Option 2">Option 2</option>
             <option value="Option 3">Option 3</option>
@@ -36,7 +88,7 @@
     <div class="modelo-select">
         <label for="modelo-select"><h3>Modelo</h3></label>
 
-        <select name="modelo-select" id="modelo-select">
+        <select name="modelo-select" id="modelo-select" bind:this={modeloSelect}>
             <option value="Option 1">Option 1</option>
             <option value="Option 2">Option 2</option>
             <option value="Option 3">Option 3</option>
@@ -46,17 +98,17 @@
     </div>
 
     <div class="checkbox">
-        <input type="checkbox" name="usado" id="usado-checkbox">
+        <input type="checkbox" name="usado" id="usado-checkbox" bind:this={usadoCheckbox}>
         <label for="usado-checkbox"><h3>Usado</h3></label>
     </div>
 
     <div class="checkbox">
-        <input type="checkbox" name="leilao" id="leilao-checkbox">
+        <input type="checkbox" name="leilao" id="leilao-checkbox" bind:this={leilaoCheckbox}>
         <label for="leilao-checkbox"><h3>Leilão</h3></label>
     </div>
 </div>
 
-<button class="tipoButton">Buscar</button>
+<button class="tipoButton" on:click={SearchHandle}>Buscar</button>
 
 <style>
 
@@ -71,6 +123,12 @@ h3 {
     color: #000;
     font-family: Roboto;
     font-size: 24px; 
+}
+button {
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
 }
 
 hr {
@@ -117,6 +175,10 @@ hr {
 }
 .tipoButton:hover {
     background: #412222d8;
+}
+.filter-active {
+    background: #412222d8;
+    color: #F29F12;
 }
 
 select {
