@@ -1,5 +1,7 @@
 <script lang="ts">
 
+export let sortData: any
+
 let tipoFilterActive = 1
 let tipoFilter
 
@@ -18,6 +20,9 @@ let usadoFilter: any
 let leilaoCheckbox: any
 let leilaoFilter: any
 
+let urlParams: any
+let requestUrl: any
+
 function SearchHandle() {
     
     precoFilter = precoSelect.value
@@ -33,7 +38,18 @@ function SearchHandle() {
         tipoFilter = "moto"
     }
 
-    //url
+    urlParams = new URLSearchParams()
+    urlParams.set("tipo", tipoFilter);
+    urlParams.set("preco", precoFilter);
+    urlParams.set("marca", marcaFilter);
+    urlParams.set("modelo", modeloFilter);
+    urlParams.set("usado", usadoFilter);
+    urlParams.set("leilao", leilaoFilter);
+    urlParams.set("sort", sortData);
+
+    requestUrl = `http://localhost:8000?${urlParams.toString()}` 
+
+    console.log(requestUrl);
 }
 
 function ClearHandle() {
@@ -44,8 +60,6 @@ function ClearHandle() {
     modeloSelect.value = ""
     usadoCheckbox.checked = false
     leilaoCheckbox.checked = false
-
-    
 }
 
 </script>

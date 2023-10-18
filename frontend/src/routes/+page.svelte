@@ -4,15 +4,8 @@
 
     import Filter from "$lib/components/Filter.svelte"
     import VeiculoDisplay from "$lib/components/VeiculoDisplay.svelte"
-    
-    let precoSelect: any
 
-    // let promise = async () => {
-
-    //     fetch("")
-    // } 
-
-    // promise
+    let sortData: any
 
     let veiculos = [
         {
@@ -24,22 +17,20 @@
         {
             id: 3
         },
-        {
-            id: 4
-        }
     ]
+
 </script>
 
 <img class="banner" src="{ad}" alt="ad">
 
 <main>
     <div class="context">
-        <h4>{veiculos.length} resultados encontrados</h4>
+        <h4>resultados encontrados</h4>
 
         <div class="sort">
-            <select name="" id="" bind:this={precoSelect}>
-                <option value="">Preço crescente</option>
-                <option value="">option 2</option>
+            <select name="sort" id="sort-select" bind:value={sortData}>
+                <option value="crescente">Preço crescente</option>
+                <option value="decrescente">option 2</option>
                 <option value="">option 3</option>
                 <option value="">option 4</option>
             </select>
@@ -48,7 +39,7 @@
 
     <div class="display">
         <div class="filterWrapper">
-            <Filter/>
+            <Filter sortData={sortData}/>
         </div>
 
         <div class="displayWrapper">
