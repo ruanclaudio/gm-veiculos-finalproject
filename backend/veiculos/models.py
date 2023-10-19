@@ -7,16 +7,18 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
+
 class CondicoesVeiculos(models.Model):
-    condicao = models.IntegerField()
-    ano = models.TextField()  # This field type is a guess.
+    condicao_novo = models.BooleanField() 
+    ano = models.PositiveSmallIntegerField()  # PositiveSmallIntegerField para campo YEAR
     cor = models.CharField(max_length=50)
     quilometragem = models.IntegerField()
-    leilao = models.IntegerField()
+    leiloado = models.BooleanField()
 
     class Meta:
         managed = False
         db_table = 'condicoes_veiculos'
+
 
 class InteresseCompra(models.Model):
     telefone = models.CharField(max_length=11)
@@ -28,6 +30,7 @@ class InteresseCompra(models.Model):
         managed = False
         db_table = 'interesse_compra'
 
+
 class InteresseVenda(models.Model):
     telefone = models.CharField(max_length=11)
     email = models.CharField(max_length=150)
@@ -37,12 +40,14 @@ class InteresseVenda(models.Model):
         managed = False
         db_table = 'interesse_venda'
 
+
 class Marcas(models.Model):
     nome = models.CharField(max_length=50)
 
     class Meta:
         managed = False
         db_table = 'marcas'
+
 
 class Modelos(models.Model):
     nome = models.CharField(max_length=50)
@@ -52,6 +57,7 @@ class Modelos(models.Model):
     class Meta:
         managed = False
         db_table = 'modelos'
+
 
 class Veiculos(models.Model):
     preco = models.DecimalField(max_digits=10, decimal_places=2)
