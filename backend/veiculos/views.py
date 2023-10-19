@@ -1,4 +1,4 @@
-from .models import InteresseCompra, InteresseVenda, Veiculos
+from .models import InteresseCompra, InteresseVenda, Veiculo
 from .serializers import VeiculoSerializer
 
 from django.shortcuts import render
@@ -39,12 +39,12 @@ class VeiculosList(ListAPIView):
 
     def get_veiculo(self):
         veic_id = self.kwargs[veic_id]
-        veiculo = Veiculos.objects.filter(Veiculos__id=veic_id)
+        veiculo = Veiculo.objects.filter(Veiculos__id=veic_id)
         serializer = VeiculoSerializer(veiculo, many=True)
         return JsonResponse(serializer.data, safe=False)
 
     def get_queryset(self):
-        veiculos = Veiculos.objects.all()
+        veiculos = Veiculo.objects.all()
         tipo = self.request.query_params.get('type')
         menor_preco = self.request.query_params.get('lowest_price')
         maior_preco = self.request.query_params.get('biggest_price')
@@ -52,7 +52,7 @@ class VeiculosList(ListAPIView):
         modelo = self.request.query_params.get('model')
         quilometragem = self.request.query_params.get('milage')
         novo = self.request.query_params.get('new')
-        leilao = self.request.query_params.get('auction')
+        leiloado = self.request.query_params.get('auction')
 
         if tipo is not None:
             veiculos = veiculos.filter(modelo__tipo=tipo)
@@ -73,10 +73,10 @@ class VeiculosList(ListAPIView):
             veiculos = veiculos.filter(condicao__quilometragem__lt=quilometragem)
 
         if novo is not None:
-            veiculos = veiculos.filter(condicao__condicao=novo)
+            veiculos = veiculos.filter(condicao__condicao_novo=novo)
 
-        if leilao is not None:
-            veiculos = veiculos.filter(condicao__leilao=leilao)
+        if leiloado is not None:
+            veiculos = veiculos.filter(condicao__leiloado=leiloado)
 
         return veiculos
 

@@ -1,27 +1,27 @@
 from .models import *
 from rest_framework import serializers 
 
-class CondicoeseiculoSerializer(serializers.ModelSerializer):
+class CondicaoVeiculoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CondicoesVeiculos
+        model = CondicaoVeiculo
         fields = '__all__'
 
 class MarcaSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Marcas
+        model = Marca
         fields = '__all__'
     
 class ModeloSerializer(serializers.ModelSerializer):
     marca = MarcaSerializer()
 
     class Meta:
-        model = Modelos
+        model = Modelo
         fields = '__all__'
 
 class VeiculoSerializer(serializers.ModelSerializer):
     modelo = ModeloSerializer()
-    condicao = CondicoeseiculoSerializer()
+    condicao = CondicaoVeiculoSerializer()
 
     class Meta:
-        model = Veiculos
+        model = Veiculo
         fields = '__all__'
