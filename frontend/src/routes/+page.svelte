@@ -9,30 +9,18 @@
 
     let sortData: any
 
-    let veiculos: any = [
-        {
-            id: 1
-        },
-        {
-            id: 2
-        },
-        {
-            id: 3
-        }
-    ]
+    let veiculos: any[] = []
 
     const handleFilter = (event: any) => {
 		
 		veiculos = event.detail;
 	};
 
-    // onMount(async () => {
-    //     let resp = await fetch("http://127.0.0.1:8000/veiculos")
+    onMount(async () => {
+        let resp = await fetch("http://127.0.0.1:8000/veiculos")
 
-    //     veiculos = await resp.json()
-
-    //     console.log(veiculos);
-    // })
+        veiculos = await resp.json()
+    })
 
 </script>
 
@@ -40,7 +28,7 @@
 
 <main>
     <div class="context">
-        <h4>resultados encontrados</h4>
+        <h4>{veiculos.length} resultados encontrados</h4>
 
         <div class="sort">
             <select name="sort" id="sort-select" bind:value={sortData}>

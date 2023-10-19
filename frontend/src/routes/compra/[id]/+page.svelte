@@ -1,15 +1,22 @@
 <script lang="ts">
-    import VeiculoDisplay from "$lib/components/VeiculoDisplay.svelte"
 
-    interface Veiculo {
-        id: number
-    }
+    import { onMount } from 'svelte';
+
+    import VeiculoDisplay from "$lib/components/VeiculoDisplayForm.svelte"
 
     import { page } from '$app/stores';
-    console.log($page.params.id)
+
+    let veiculoId: any = $page.params.id
     
-    let veiculo: Veiculo
-    // fetch veiculo
+    let veiculo: any[] = []
+    
+    onMount(async () => {
+        let resp = await fetch(`http://127.0.0.1:8000/veiculos/${veiculoId}`)
+
+        let veiculoResp = await resp.json()
+        veiculo = veiculoResp[0]
+    })
+
 </script>
 
 <main>
@@ -27,6 +34,7 @@
                 <textarea name="mensagem" id="mensagem" rows="6" ></textarea>
             </div>
 
+            <VeiculoDisplay {veiculo}/>
 
             <button id="btn-form" type="submit">Enviar</button>
         </form>

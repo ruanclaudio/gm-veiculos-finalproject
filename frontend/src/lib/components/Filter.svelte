@@ -51,21 +51,15 @@ function SearchHandle() {
     urlParams.set("leilao", leilaoFilter);
     urlParams.set("sort", sortData);
 
-    requestUrl = `http://localhost:8000?${urlParams.toString()}` 
+    requestUrl = `http://localhost:8000/veiculos?${urlParams.toString()}`
 
-    console.log(requestUrl);
-    // fetch veiculos
-    let veiculos = [
-        {
-            id: 5
-        },
-        {
-            id: 1
-        },
-        {
-            id: 8
-        }
-    ]
+    let veiculos: any[] = []
+
+    async function apiCall() {
+        let resp = await fetch(requestUrl)
+        veiculos = await resp.json()
+    }
+    apiCall()
 
     dispatch('getVeiculos', veiculos)
 }
