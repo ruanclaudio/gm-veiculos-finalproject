@@ -1,5 +1,15 @@
 <script lang="ts">
-    import Veiculo from "$lib/components/VeiculoDisplay.svelte"
+    import VeiculoDisplay from "$lib/components/VeiculoDisplay.svelte"
+
+    interface Veiculo {
+        id: number
+    }
+
+    import { page } from '$app/stores';
+    console.log($page.params.id)
+    
+    let veiculo: Veiculo
+    // fetch veiculo
 </script>
 
 <main>
@@ -17,7 +27,6 @@
                 <textarea name="mensagem" id="mensagem" rows="6" ></textarea>
             </div>
 
-            <Veiculo/>
 
             <button id="btn-form" type="submit">Enviar</button>
         </form>

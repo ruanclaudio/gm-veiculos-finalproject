@@ -1,5 +1,7 @@
 <script lang="ts">
 
+    import { onMount } from 'svelte';
+
     import ad from "$lib/assets/ad.png"
 
     import Filter from "$lib/components/Filter.svelte"
@@ -7,17 +9,15 @@
 
     let sortData: any
 
-    let veiculos = [
-        {
-            id: 1
-        },
-        {
-            id: 2
-        },
-        {
-            id: 3
-        },
-    ]
+    let veiculos: any = []
+
+    onMount(async () => {
+        let resp = await fetch("http://127.0.0.1:8000/veiculos")
+
+        veiculos = await resp.json()
+
+        console.log(veiculos);
+    })
 
 </script>
 
