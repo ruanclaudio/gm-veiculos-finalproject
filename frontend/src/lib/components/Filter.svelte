@@ -1,5 +1,9 @@
 <script lang="ts">
 
+import { createEventDispatcher } from 'svelte';
+
+let dispatch = createEventDispatcher();
+
 export let sortData: any
 
 let tipoFilterActive = 1
@@ -50,6 +54,20 @@ function SearchHandle() {
     requestUrl = `http://localhost:8000?${urlParams.toString()}` 
 
     console.log(requestUrl);
+    // fetch veiculos
+    let veiculos = [
+        {
+            id: 5
+        },
+        {
+            id: 1
+        },
+        {
+            id: 8
+        }
+    ]
+
+    dispatch('getVeiculos', veiculos)
 }
 
 function ClearHandle() {
