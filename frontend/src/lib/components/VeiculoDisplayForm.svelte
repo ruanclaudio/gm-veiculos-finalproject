@@ -1,7 +1,7 @@
 <script lang="ts">
     import local from "$lib/assets/local.png"
 
-    export let veiculo: Veiculo
+    export let veiculo: any
 </script>
 
 <div class="resultado">
@@ -24,11 +24,6 @@
 
                 <h3>Pagamento</h3>
             </div>
-
-            <a href="/compra/{veiculo.id}" class="vendaButton">Tenho interesse <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10.2652 12.5V7.7H0.0344083L0 5.288H10.2652V0.5L16 6.5L10.2652 12.5Z" fill="#F29F12"/>
-              </svg>
-            </a>
         </div>
     </div>
 </div>
@@ -53,27 +48,6 @@ h3 {
     color: #000;
     font-family: Roboto;
     font-size: 16px;
-}
-
-.vendaButton {
-    display: flex;
-    padding: 16px 24px;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 8px;
-
-    color: #F29F12;
-    text-align: center;
-    font-family: Racing Sans One;
-    font-size: 20px;
-
-    border-radius: 12px;
-    background: #412222;
-
-    cursor: pointer;
-}
-.vendaButton:hover {
-    background: #412222d8;
 }
 
 .text {
@@ -131,11 +105,6 @@ img {
 }
 
 @media screen and (max-width: 650px) {
-    .vendaButton {
-        padding: 12px 12px;
-        font-size: 16px;
-        margin-top: 24px;
-    }
 
     .row2 {
         flex-direction: column;
