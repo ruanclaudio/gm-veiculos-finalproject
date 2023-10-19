@@ -8,7 +8,7 @@
 from django.db import models
 
 
-class CondicoesVeiculos(models.Model):
+class CondicaoVeiculo(models.Model):
     condicao_novo = models.BooleanField() 
     ano = models.PositiveSmallIntegerField()  # PositiveSmallIntegerField para campo YEAR
     cor = models.CharField(max_length=50)
@@ -24,7 +24,7 @@ class InteresseCompra(models.Model):
     telefone = models.CharField(max_length=11)
     email = models.CharField(max_length=150)
     mensagem = models.CharField(max_length=1000)
-    veiculo = models.ForeignKey('Veiculos', models.DO_NOTHING)
+    veiculo = models.ForeignKey('Veiculo', models.DO_NOTHING)
 
     class Meta:
         managed = False
@@ -41,7 +41,7 @@ class InteresseVenda(models.Model):
         db_table = 'interesse_venda'
 
 
-class Marcas(models.Model):
+class Marca(models.Model):
     nome = models.CharField(max_length=50)
 
     class Meta:
@@ -49,21 +49,21 @@ class Marcas(models.Model):
         db_table = 'marcas'
 
 
-class Modelos(models.Model):
+class Modelo(models.Model):
     nome = models.CharField(max_length=50)
     tipo = models.CharField(max_length=50)
-    marca = models.ForeignKey(Marcas, models.DO_NOTHING)
+    marca = models.ForeignKey(Marca, models.DO_NOTHING)
 
     class Meta:
         managed = False
         db_table = 'modelos'
 
 
-class Veiculos(models.Model):
+class Veiculo(models.Model):
     preco = models.DecimalField(max_digits=10, decimal_places=2)
     pagamento = models.CharField(max_length=50)
-    modelo = models.ForeignKey(Modelos, models.DO_NOTHING)
-    condicao = models.ForeignKey(CondicoesVeiculos, models.DO_NOTHING)
+    modelo = models.ForeignKey(Modelo, models.DO_NOTHING)
+    condicao = models.ForeignKey(CondicaoVeiculo, models.DO_NOTHING)
 
     class Meta:
         managed = False
