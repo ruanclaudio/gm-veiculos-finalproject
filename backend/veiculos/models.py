@@ -9,11 +9,11 @@ from django.db import models
 
 
 class CondicoesVeiculos(models.Model):
-    condicao = models.IntegerField()
-    ano = models.TextField()  # This field type is a guess.
+    condicao_novo = models.BooleanField() 
+    ano = models.PositiveSmallIntegerField()  # PositiveSmallIntegerField para campo YEAR
     cor = models.CharField(max_length=50)
     quilometragem = models.IntegerField()
-    leilao = models.IntegerField()
+    leiloado = models.BooleanField()
 
     class Meta:
         managed = False
