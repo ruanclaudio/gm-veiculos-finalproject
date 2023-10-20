@@ -50,23 +50,23 @@ class VeiculosList(ListAPIView):
         max_price = None
 
         if faixa_preco == 'a20':
-            min_price = Decimal('0.0')
-            max_price = Decimal('20000.0')
+            min_price = 0
+            max_price = 20000
         if faixa_preco == 'a40':
-            min_price = Decimal('20000.0')
-            max_price = Decimal('40000.0')
+            min_price = 20000
+            max_price = 40000
         if faixa_preco == 'a60':
-            min_price = Decimal('40000.0')
-            max_price = Decimal('60000.0')
+            min_price = 40000
+            max_price = 60000
         if faixa_preco == 'a80':
-            min_price = Decimal('60000.0')
-            max_price = Decimal('80000.0')
+            min_price = 60000
+            max_price = 80000
         if faixa_preco == 'a100':
-            min_price = Decimal('80000.0')
-            max_price = Decimal('100000.0')
+            min_price = 80000
+            max_price = 100000
         if faixa_preco == 'm100':
-            min_price = Decimal('100000.0')
-            max_price = Decimal('999999999.0')
+            min_price = 100000
+            max_price = 999999999
 
         return min_price, max_price
 
