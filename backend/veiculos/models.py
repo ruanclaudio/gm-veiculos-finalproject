@@ -9,10 +9,8 @@ from django.db import models
 
 
 class CondicaoVeiculo(models.Model):
-    condicao_novo = models.BooleanField() 
+    condicao_usado = models.BooleanField() 
     ano = models.PositiveSmallIntegerField()  # PositiveSmallIntegerField para campo YEAR
-    cor = models.CharField(max_length=50)
-    quilometragem = models.IntegerField()
     leiloado = models.BooleanField()
 
     class Meta:
@@ -21,6 +19,7 @@ class CondicaoVeiculo(models.Model):
 
 
 class InteresseCompra(models.Model):
+    nome = models.CharField(max_length=100)
     telefone = models.CharField(max_length=11)
     email = models.CharField(max_length=150)
     mensagem = models.CharField(max_length=1000)
@@ -32,6 +31,7 @@ class InteresseCompra(models.Model):
 
 
 class InteresseVenda(models.Model):
+    nome = models.CharField(max_length=100)
     telefone = models.CharField(max_length=11)
     email = models.CharField(max_length=150)
     mensagem = models.CharField(max_length=1000)
