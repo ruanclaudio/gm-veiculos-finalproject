@@ -1,3 +1,4 @@
+from decimal import Decimal
 from .models import InteresseCompra, InteresseVenda, Veiculo
 from .serializers import VeiculoSerializer
 
@@ -43,25 +44,48 @@ class VeiculosList(ListAPIView):
         serializer = VeiculoSerializer(veiculo, many=True)
         return JsonResponse(serializer.data, safe=False)
 
+    @staticmethod
+    def get_faixa_preco(faixa_preco):
+        min_price = None
+        max_price = None
+
+        if faixa_preco == 'a20':
+            min_price = Decimal('0.0')
+            max_price = Decimal('20000.0')
+        if faixa_preco == 'a40':
+            min_price = Decimal('20000.0')
+            max_price = Decimal('40000.0')
+        if faixa_preco == 'a60':
+            min_price = Decimal('40000.0')
+            max_price = Decimal('60000.0')
+        if faixa_preco == 'a80':
+            min_price = Decimal('60000.0')
+            max_price = Decimal('80000.0')
+        if faixa_preco == 'a100':
+            min_price = Decimal('80000.0')
+            max_price = Decimal('100000.0')
+        if faixa_preco == 'm100':
+            min_price = Decimal('100000.0')
+            max_price = Decimal('999999999.0')
+
+        return min_price, max_price
+
     def get_queryset(self):
         veiculos = Veiculo.objects.all()
-        tipo = self.request.query_params.get('type')
-        menor_preco = self.request.query_params.get('lowest_price')
-        maior_preco = self.request.query_params.get('biggest_price')
-        marca = self.request.query_params.get('brand')
-        modelo = self.request.query_params.get('model')
-        quilometragem = self.request.query_params.get('milage')
-        novo = self.request.query_params.get('new')
-        leiloado = self.request.query_params.get('auction')
+        tipo = self.request.query_params.get('tipo') # carro ou moto
+        faixa_preco = self.request.query_params.get('preco') # a20, a40, a60, a80, a100, m100
+        marca = self.request.query_params.get('marca') # ex: honda
+        modelo = self.request.query_params.get('modelo') # ex: civic
+        estado_usado = self.request.query_params.get('usado') # True para usado
+        leiloado = self.request.query_params.get('leilao') # true para leiloado
+        # sort = self.request.query_params.get('sort') # asc, des # padrao
+
+        if faixa_preco is not None:
+            min_price, max_price = self.get_faixa_preco(faixa_preco)
+            veiculos = veiculos.filter(preco__gt=min_price, preco__lte=max_price)
 
         if tipo is not None:
             veiculos = veiculos.filter(modelo__tipo=tipo)
-
-        if menor_preco is not None:
-            veiculos = veiculos.filter(preco__gt=menor_preco)
-
-        if maior_preco is not None:
-            veiculos = veiculos.filter(preco__lt=maior_preco)
 
         if marca is not None:
             veiculos = veiculos.filter(modelo__marca__nome=marca)
@@ -69,11 +93,8 @@ class VeiculosList(ListAPIView):
         if modelo is not None:
             veiculos = veiculos.filter(modelo__nome=modelo)
 
-        if quilometragem is not None:
-            veiculos = veiculos.filter(condicao__quilometragem__lt=quilometragem)
-
-        if novo is not None:
-            veiculos = veiculos.filter(condicao__condicao_novo=novo)
+        if estado_usado is not None:
+            veiculos = veiculos.filter(condicao__condicao_usado=estado_usado)
 
         if leiloado is not None:
             veiculos = veiculos.filter(condicao__leiloado=leiloado)
