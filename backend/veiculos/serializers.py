@@ -4,7 +4,7 @@ from rest_framework import serializers
 class CondicaoVeiculoSerializer(serializers.ModelSerializer):
     class Meta:
         model = CondicaoVeiculo
-        fields = '__all__'
+        fields = ['condicao_usado', 'ano', 'leiloado']
 
 class MarcaSerializer(serializers.ModelSerializer):
     class Meta:
@@ -12,11 +12,11 @@ class MarcaSerializer(serializers.ModelSerializer):
         fields = '__all__'
     
 class ModeloSerializer(serializers.ModelSerializer):
-    marca = MarcaSerializer()
+    marca = serializers.StringRelatedField()
 
     class Meta:
         model = Modelo
-        fields = '__all__'
+        fields = ['nome', 'tipo', 'marca']
 
 class VeiculoSerializer(serializers.ModelSerializer):
     modelo = ModeloSerializer()

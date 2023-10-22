@@ -38,9 +38,8 @@ def receber_interesse_compra(request):
 class VeiculosList(ListAPIView):
     serializer_class = VeiculoSerializer
 
-    def get_veiculo(self):
-        veic_id = self.kwargs[veic_id]
-        veiculo = Veiculo.objects.filter(Veiculos__id=veic_id)
+    def get_veiculo(self, veic_id):
+        veiculo = Veiculo.objects.filter(id=veic_id)
         serializer = VeiculoSerializer(veiculo, many=True)
         return JsonResponse(serializer.data, safe=False)
 
@@ -78,7 +77,7 @@ class VeiculosList(ListAPIView):
         modelo = self.request.query_params.get('modelo') # ex: civic
         estado_usado = self.request.query_params.get('usado') # True para usado
         leiloado = self.request.query_params.get('leilao') # true para leiloado
-        # sort = self.request.query_params.get('sort') # asc, des # padrao
+        sort = self.request.query_params.get('sort') # asc, des # padrao asc
 
         if faixa_preco is not None:
             min_price, max_price = self.get_faixa_preco(faixa_preco)
@@ -99,11 +98,16 @@ class VeiculosList(ListAPIView):
         if leiloado is not None:
             veiculos = veiculos.filter(condicao__leiloado=leiloado)
 
-        return veiculos
+        if sort == 'asc':
+            veiculos = veiculos.order_by('preco')  # Ordene em ordem ascendente.
+        elif sort == 'des':
+            veiculos = veiculos.order_by('-preco')  # Ordene em ordem descendente.
 
+        return veiculos
 
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
-
         serializer = self.get_serializer(queryset, many=True)
+
+        
         return Response(serializer.data)
