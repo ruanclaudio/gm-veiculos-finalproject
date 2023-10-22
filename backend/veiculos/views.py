@@ -38,9 +38,8 @@ def receber_interesse_compra(request):
 class VeiculosList(ListAPIView):
     serializer_class = VeiculoSerializer
 
-    def get_veiculo(self):
-        veic_id = self.kwargs[veic_id]
-        veiculo = Veiculo.objects.filter(Veiculos__id=veic_id)
+    def get_veiculo(self, veic_id):
+        veiculo = Veiculo.objects.filter(id=veic_id)
         serializer = VeiculoSerializer(veiculo, many=True)
         return JsonResponse(serializer.data, safe=False)
 
