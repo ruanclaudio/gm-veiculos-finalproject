@@ -1,6 +1,6 @@
 from decimal import Decimal
-from .models import InteresseCompra, InteresseVenda, Veiculo, Modelo
-from .serializers import VeiculoSerializer, ModeloSerializer2
+from .models import InteresseCompra, InteresseVenda, Veiculo, Modelo, Marca
+from .serializers import VeiculoSerializer, FiltroMarcaSerializer, FiltroModeloSerializer
 
 from django.shortcuts import render
 from django.core.paginator import Paginator
@@ -9,12 +9,17 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView
 
-def filtros(request):
+def get_filtro(request, filtro):
     if request.method == 'GET':
-        modelo = Modelo.objects.all()
-        serializer = ModeloSerializer2(modelo, many=True)
-        return JsonResponse(serializer.data, safe=False)
-
+        if filtro == 'modelos':
+            modelo = Modelo.objects.all()
+            serializer = FiltroModeloSerializer(modelo, many=True)
+            return JsonResponse(serializer.data, safe=False)
+        
+        elif filtro == 'marcas':
+            marca = Marca.objects.all()
+            serializer = FiltroMarcaSerializer(marca, many=True)
+            return JsonResponse(serializer.data, safe=False)
 
 def receber_interesse_venda(request):
     if request.method == 'POST':

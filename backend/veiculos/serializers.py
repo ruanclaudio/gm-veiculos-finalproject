@@ -27,14 +27,13 @@ class VeiculoSerializer(ModelSerializer):
         model = Veiculo
         fields = '__all__'
 
-class MarcaSerializer2(ModelSerializer):
+
+class FiltroMarcaSerializer(ModelSerializer):
     class Meta:
         model = Marca
         fields = ['nome']
     
-class ModeloSerializer2(ModelSerializer):
-    marca = serializers.StringRelatedField()
-
+class FiltroModeloSerializer(ModelSerializer):
     class Meta:
         model = Modelo
-        fields = ['nome', 'marca']
+        fields = ['nome']
