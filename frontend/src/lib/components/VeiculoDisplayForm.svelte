@@ -1,6 +1,8 @@
 <script lang="ts">
     import local from "$lib/assets/local.png"
 
+    const formatter = new Intl.NumberFormat('pt-BR', {});
+
     export let veiculo: any
 </script>
 
@@ -13,14 +15,14 @@
 
             <div class="descriptions">
                 <h3>Estado: {veiculo.condicao.condicao_usado ? "Usado" : "Novo"}</h3>
-                <h3>Quilometragem: {veiculo.condicao.quilometragem} km</h3>
+                <h3>Quilometragem: {formatter.format(veiculo.condicao.quilometragem)} km</h3>
                 <h3>Passou por leilão: {veiculo.condicao.leiloado ? "Sim" : "Não"}</h3>
             </div>
         </div>
 
         <div class="row2">
             <div class="finance">
-                <h2>Preço: R${veiculo.preco}</h2>
+                <h2>Preço: R$ {formatter.format(veiculo.preco)}</h2>
 
                 <h3>Pagamento: {veiculo.pagamento}</h3>
             </div>
