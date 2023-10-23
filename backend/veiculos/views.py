@@ -24,11 +24,14 @@ def receber_interesse_venda(request):
     
 def receber_interesse_compra(request):
     if request.method == 'POST':
+        nome = request.POST.get('nome')
         telefone = request.POST.get('telefone')
         email = request.POST.get('email')
         mensagem = request.POST.get('mensagem')
+        veiculo = request.POST.get('veiculo')
         
-        interesse = InteresseCompra(telefone=telefone, email=email, mensagem=mensagem)
+        interesse = InteresseCompra(nome = nome, telefone=telefone, 
+                                    email=email, mensagem=mensagem, veiculo = veiculo)
         interesse.save()
         
         return JsonResponse({'mensagem': 'Interesse de venda registrado com sucesso!'})
