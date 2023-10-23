@@ -13,7 +13,7 @@
 
             <div class="descriptions">
                 <h3>Estado: {veiculo.condicao.condicao_usado ? "Usado" : "Novo"}</h3>
-                <h3>Quilometragem: {veiculo.condicao.quilometragem}</h3>
+                <h3>Quilometragem: {veiculo.condicao.quilometragem} km</h3>
                 <h3>Passou por leilão: {veiculo.condicao.leiloado ? "Sim" : "Não"}</h3>
             </div>
         </div>
