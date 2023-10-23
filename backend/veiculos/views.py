@@ -80,7 +80,6 @@ class VeiculosList(ListAPIView):
         modelo = self.request.query_params.get('modelo') # ex: civic
         estado_usado = self.request.query_params.get('usado') # True para usado
         leiloado = self.request.query_params.get('leilao') # true para leiloado
-        # quilometragem = self.request.query_params.get('leilao') # int ou 0
         sort = self.request.query_params.get('sort') # asc, des # padrao asc
 
         if faixa_preco is not None:
@@ -101,11 +100,6 @@ class VeiculosList(ListAPIView):
 
         if leiloado is not None:
             veiculos = veiculos.filter(condicao__leiloado=leiloado)
-
-        """
-        if quilometragem is not None:
-            veiculos = veiculos.filter(condicao__quilometragem=quilometragem)
-        """
 
         if sort == 'asc':
             veiculos = veiculos.order_by('preco')  # Ordene em ordem ascendente.
