@@ -12,6 +12,7 @@ class CondicaoVeiculo(models.Model):
     condicao_usado = models.BooleanField() 
     ano = models.PositiveSmallIntegerField()  # PositiveSmallIntegerField para campo YEAR
     leiloado = models.BooleanField()
+    quilometragem = models.IntegerField()
 
     class Meta:
         managed = False

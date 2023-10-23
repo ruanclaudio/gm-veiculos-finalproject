@@ -5,7 +5,8 @@ CREATE TABLE condicoes_veiculos (
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	condicao_usado BOOLEAN NOT NULL,
 	ano YEAR NOT NULL,
-	leiloado BOOLEAN NOT NULL
+	leiloado BOOLEAN NOT NULL,
+    quilometragem INT NOT NULL
 );
 
 CREATE TABLE marcas (
