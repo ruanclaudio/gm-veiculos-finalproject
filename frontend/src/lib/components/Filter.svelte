@@ -1,8 +1,12 @@
 <script lang="ts">
 
+import { onMount } from 'svelte';
+
 import { createEventDispatcher } from 'svelte';
 
 let dispatch = createEventDispatcher();
+
+let dispatchReset = createEventDispatcher()
 
 export let sortData: any
 
@@ -43,25 +47,42 @@ function SearchHandle() {
     }
 
     urlParams = new URLSearchParams()
+
     urlParams.set("tipo", tipoFilter);
-    urlParams.set("preco", precoFilter);
-    urlParams.set("marca", marcaFilter);
-    urlParams.set("modelo", modeloFilter);
-    urlParams.set("usado", usadoFilter);
-    urlParams.set("leilao", leilaoFilter);
+
+    if (precoFilter != "") urlParams.set("preco", precoFilter);
+    if (marcaFilter != "") urlParams.set("marca", marcaFilter);
+    if (modeloFilter != "") urlParams.set("modelo", modeloFilter);
+
+    if (usadoFilter) urlParams.set("usado", "True");
+    else urlParams.set("usado", "False");
+
+    if (leilaoFilter) urlParams.set("leilao", "True");
+    else urlParams.set("leilao", "False");
+
     urlParams.set("sort", sortData);
 
-    requestUrl = `http://localhost:8000/veiculos?${urlParams.toString()}`
+    requestUrl = `http://127.0.0.1:8000/veiculos/?${urlParams.toString()}`
+    
 
     let veiculos: any[] = []
 
     async function apiCall() {
         let resp = await fetch(requestUrl)
         veiculos = await resp.json()
+
+        dispatch('getVeiculos', veiculos)
     }
     apiCall()
+}
 
-    dispatch('getVeiculos', veiculos)
+
+async function apiCallReset() {
+
+    let resp = await fetch("http://127.0.0.1:8000/veiculos")
+    let veiculos = await resp.json()
+
+    dispatchReset('getVeiculosReset', veiculos)
 }
 
 function ClearHandle() {
@@ -72,7 +93,26 @@ function ClearHandle() {
     modeloSelect.value = ""
     usadoCheckbox.checked = false
     leilaoCheckbox.checked = false
+
+    apiCallReset()
 }
+
+let modelos: any[] = []
+let marcas: any[] = []
+
+onMount(async () => {
+        let respMod = await fetch("http://127.0.0.1:8000/veiculos/filtros/modelos")
+
+        let modelosJson = await respMod.json()
+
+        modelos = [...new Set(modelosJson)];
+
+        let respMarca = await fetch("http://127.0.0.1:8000/veiculos/filtros/marcas")
+
+        let marcasJson = await respMarca.json()
+
+        marcas = [...new Set(marcasJson)];
+    })
 
 </script>
 
@@ -89,13 +129,15 @@ function ClearHandle() {
 <div class="options">
     <div class="preco-select">
         <label for="preco-select"><h3>Faixa de preço</h3></label>
-    
+
         <select name="preco-select" id="preco-select" bind:this={precoSelect}>
-            <option value="Option 1">Option 1</option>
-            <option value="Option 2">Option 2</option>
-            <option value="Option 3">Option 3</option>
-            <option value="Option 4">Option 4</option>
-            <option value="Option 5">Option 5</option>
+            <option value=""></option>
+            <option value="a20">Até R$20.000</option>
+            <option value="a40">Entre R$20.000 e R$40.000</option>
+            <option value="a60">Entre R$40.000 e R$60.000</option>
+            <option value="a80">Entre R$60.000 e R$80.000</option>
+            <option value="a100">Entre R$80.000 e R$100.000</option>
+            <option value="m100">Mais de R$100.000</option>
         </select>
     </div>
 
@@ -103,11 +145,10 @@ function ClearHandle() {
         <label for="marca-select"><h3>Marca</h3></label>
 
         <select name="marca-select" id="marca-select" bind:this={marcaSelect}>
-            <option value="Option 1">Option 1</option>
-            <option value="Option 2">Option 2</option>
-            <option value="Option 3">Option 3</option>
-            <option value="Option 4">Option 4</option>
-            <option value="Option 5">Option 5</option>
+            <option value=""></option>
+            {#each marcas as marca}
+                <option value="{marca.nome.toLowerCase()}">{marca.nome}</option>
+            {/each}
         </select>
     </div>
 
@@ -115,11 +156,10 @@ function ClearHandle() {
         <label for="modelo-select"><h3>Modelo</h3></label>
 
         <select name="modelo-select" id="modelo-select" bind:this={modeloSelect}>
-            <option value="Option 1">Option 1</option>
-            <option value="Option 2">Option 2</option>
-            <option value="Option 3">Option 3</option>
-            <option value="Option 4">Option 4</option>
-            <option value="Option 5">Option 5</option>
+            <option value=""></option>
+            {#each modelos as modelo}
+                <option value="{modelo.nome.toLowerCase()}">{modelo.nome}</option>
+            {/each}
         </select>
     </div>
 

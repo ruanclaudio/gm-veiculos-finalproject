@@ -16,6 +16,11 @@
 		veiculos = event.detail;
 	};
 
+    const handleFilterReset = (event: any) => {
+		
+		veiculos = event.detail;
+	};
+
     onMount(async () => {
         let resp = await fetch("http://127.0.0.1:8000/veiculos")
 
@@ -32,17 +37,15 @@
 
         <div class="sort">
             <select name="sort" id="sort-select" bind:value={sortData}>
-                <option value="crescente">Preço crescente</option>
-                <option value="decrescente">option 2</option>
-                <option value="">option 3</option>
-                <option value="">option 4</option>
+                <option value="asc">Preço crescente</option>
+                <option value="des">Preço decrescente</option>
             </select>
         </div>
     </div>
 
     <div class="display">
         <div class="filterWrapper">
-            <Filter sortData={sortData} on:getVeiculos={handleFilter}/>
+            <Filter sortData={sortData} on:getVeiculos={handleFilter} on:getVeiculosReset={handleFilterReset}/>
         </div>
 
         <div class="displayWrapper">
