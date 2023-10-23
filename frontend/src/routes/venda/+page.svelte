@@ -4,9 +4,19 @@
         <h1>Solicitar venda de veículo</h1>
 
         <form action="">
+            <div class="nome">
+                <label for="nome">Nome: </label> <br>
+                <input type="text" name="nome" id="nome">
+            </div>
+
             <div class="tel">
                 <label for="tel">Tel: </label> <br>
                 <input type="tel" name="tel" id="tel">
+            </div>
+
+            <div class="email">
+                <label for="email">Email: </label> <br>
+                <input type="email" name="email" id="email">
             </div>
 
             <div class="mensagem">
@@ -71,14 +81,18 @@ input, textarea {
     resize: none;
 }
 
-.tel {
+.tel, 
+.nome,
+.email {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
     gap: 4px;
     width: 100%;
 }
-#tel {
+#tel,
+#nome,
+#email {
     width: 30%;
 }
 
@@ -116,14 +130,22 @@ input[type="file"] {
 
 
 @media screen and (max-width: 1300px) {
-    #tel {
+    #tel,
+    #nome,
+    #email {
         width: 50%;
     }
 }
 
 @media screen and (max-width: 950px) {
-    #tel {
+    #tel,
+    #nome,
+    #email {
         width: 80%;
+    }
+
+    main {
+        margin: 5% 10%;
     }
 }
 </style>
