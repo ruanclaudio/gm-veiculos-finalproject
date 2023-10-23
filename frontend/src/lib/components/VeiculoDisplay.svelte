@@ -22,7 +22,7 @@
 
         <div class="row2">
             <div class="finance">
-                <h2>Preço: R$ {formatter.format(veiculo.preco)}</h2>
+                <h2>Preço: R${formatter.format(veiculo.preco)}</h2>
 
                 <h3>Pagamento: {veiculo.pagamento}</h3>
             </div>
