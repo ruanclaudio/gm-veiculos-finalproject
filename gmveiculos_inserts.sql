@@ -1,10 +1,10 @@
 -- Inserir dados na tabela condicoes_veiculos
-INSERT INTO condicoes_veiculos (condicao_usado, ano, leiloado)
+INSERT INTO condicoes_veiculos (condicao_usado, ano, leiloado, quilometragem)
 VALUES
-    (TRUE, '2019', FALSE),
-    (TRUE, '2020', FALSE),
-    (TRUE, '2015', TRUE),
-    (FALSE, '2021', FALSE);
+    (TRUE, '2019', FALSE, 1000),
+    (TRUE, '2020', FALSE, 573),
+    (TRUE, '2015', TRUE, 9437),
+    (FALSE, '2021', FALSE, 0);
 
 -- Inserir dados na tabela marcas
 INSERT INTO marcas (nome)
