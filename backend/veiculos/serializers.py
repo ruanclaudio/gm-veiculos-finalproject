@@ -26,3 +26,15 @@ class VeiculoSerializer(ModelSerializer):
     class Meta:
         model = Veiculo
         fields = '__all__'
+
+class MarcaSerializer2(ModelSerializer):
+    class Meta:
+        model = Marca
+        fields = ['nome']
+    
+class ModeloSerializer2(ModelSerializer):
+    marca = serializers.StringRelatedField()
+
+    class Meta:
+        model = Modelo
+        fields = ['nome', 'marca']
