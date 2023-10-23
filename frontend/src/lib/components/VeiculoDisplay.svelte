@@ -1,7 +1,7 @@
 <script lang="ts">
     import local from "$lib/assets/local.png"
 
-    export let veiculo: Veiculo
+    export let veiculo: any
 </script>
 
 <div class="resultado">
@@ -9,20 +9,20 @@
 
     <div class="text">
         <div class="row1">
-            <h2>Marca Modelo (Ano) {veiculo.id}</h2>
+            <h2>{veiculo.modelo.marca} {veiculo.modelo.nome} ({veiculo.condicao.ano})</h2>
 
             <div class="descriptions">
-                <h3>Estado: Usado</h3>
-                <h3>Quilometragem: 120.000 km</h3>
-                <h3>Passou por leilão: Não</h3>
+                <h3>Estado: {veiculo.condicao.condicao_usado ? "Usado" : "Novo"}</h3>
+                <h3>Quilometragem: {veiculo.condicao.quilometragem}</h3>
+                <h3>Passou por leilão: {veiculo.condicao.leiloado ? "Sim" : "Não"}</h3>
             </div>
         </div>
 
         <div class="row2">
             <div class="finance">
-                <h2>Preço</h2>
+                <h2>Preço: R${veiculo.preco}</h2>
 
-                <h3>Pagamento</h3>
+                <h3>Pagamento: {veiculo.pagamento}</h3>
             </div>
 
             <a href="/compra/{veiculo.id}" class="vendaButton">Tenho interesse <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -96,7 +96,8 @@ h3 {
 
 .row2 {
     display: flex;
-    padding: 12px 0px;      
+    padding: 12px 0px;
+    gap: 16px;  
     justify-content: space-between;
     align-items: flex-end;
     align-self: stretch;

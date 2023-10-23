@@ -2,21 +2,19 @@
 
     import { onMount } from 'svelte';
 
-    import VeiculoDisplay from "$lib/components/VeiculoDisplayForm.svelte"
+    import VeiculoDisplayForm from "$lib/components/VeiculoDisplayForm.svelte"
 
     import { page } from '$app/stores';
 
     let veiculoId: any = $page.params.id
     
-    let veiculo: any[] = []
+    let veiculos: any[] = []
     
     onMount(async () => {
         let resp = await fetch(`http://127.0.0.1:8000/veiculos/${veiculoId}`)
 
-        let veiculoResp = await resp.json()
-        veiculo = veiculoResp[0]
+        veiculos = await resp.json()
     })
-
 </script>
 
 <main>
@@ -34,7 +32,9 @@
                 <textarea name="mensagem" id="mensagem" rows="6" ></textarea>
             </div>
 
-            <VeiculoDisplay {veiculo}/>
+            {#each veiculos as veiculo (veiculo.id)}
+                <VeiculoDisplayForm {veiculo}/>
+            {/each}
 
             <button id="btn-form" type="submit">Enviar</button>
         </form>
