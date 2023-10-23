@@ -26,3 +26,14 @@ class VeiculoSerializer(ModelSerializer):
     class Meta:
         model = Veiculo
         fields = '__all__'
+
+
+class FiltroMarcaSerializer(ModelSerializer):
+    class Meta:
+        model = Marca
+        fields = ['nome']
+    
+class FiltroModeloSerializer(ModelSerializer):
+    class Meta:
+        model = Modelo
+        fields = ['nome']
