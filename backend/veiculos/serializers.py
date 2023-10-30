@@ -37,3 +37,13 @@ class FiltroModeloSerializer(ModelSerializer):
     class Meta:
         model = Modelo
         fields = ['nome']
+
+class InteresseCompraSerializer(ModeloSerializer):
+    class Meta:
+        model = InteresseCompra
+        fields = "__all__"
+
+class InteresseVendaSerializer(ModeloSerializer):
+    class Meta:
+        model = InteresseVenda
+        fields = "__all__"

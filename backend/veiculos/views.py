@@ -1,6 +1,6 @@
 from decimal import Decimal
 from .models import InteresseCompra, InteresseVenda, Veiculo, Modelo, Marca
-from .serializers import VeiculoSerializer, FiltroMarcaSerializer, FiltroModeloSerializer
+from .serializers import *
 
 from django.shortcuts import render
 from django.core.paginator import Paginator
@@ -8,6 +8,72 @@ from django.http import request, JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView
+from rest_framework.views import APIView
+
+"""
+{
+    {
+        "id": 1,  // O ID será gerado automaticamente no banco de dados
+        "nome": "Nome do Cliente",
+        "telefone": "1234567890",
+        "email": "cliente@example.com",
+        "mensagem": "Mensagem de interesse na compra de um veículo.",
+        "veiculo_id": 1  // Substitua pelo ID do veículo ao qual o interesse está relacionado
+    }
+}
+"""
+
+class FormulariosView(APIView):
+    serializer_class = VeiculoSerializer
+
+    '''
+    def get(self, request, *args, **kwargs):
+        form_type = request.data.get('form_type')
+        if form_type == 'compra':
+            form_compras = InteresseCompra.objects.all()
+            serializer_compras = InteresseCompraSerializer(form_compras)
+            return Response(serializer_compras.data)
+        elif form_type == 'venda':
+            form_vendas = InteresseVenda.objects.all()
+            serializer_vendas = InteresseVendaSerializer(form_vendas, many=True)
+            return Response(serializer_vendas.data)
+    '''
+
+    def post(self, request, *args, **kwargs):
+        form_type = request.data.get('form_type')
+        if form_type == 'compra':
+            return self.post_form_compra(request)
+        elif form_type == 'venda':
+            return self.post_form_venda(request)
+        else:
+            return JsonResponse({'mensagem': 'Tipo de formulário inválido.'}, status=400)
+    
+    def post_form_compra(self, request, form_type):
+        if form_type == 'compra':
+            nome = request.data.get('nome')
+            telefone = request.data.get('telefone')
+            email = request.data.get('email')
+            mensagem = request.data.get('mensagem')
+            veiculo_id = request.data.get('veiculo')
+            
+            if veiculo_id is not None:
+                try:
+                    veiculo = Veiculo.objects.get(pk=veiculo_id)
+                except Veiculo.DoesNotExist:
+                    return JsonResponse({'mensagem': 'Veículo não encontrado.'}, status=400)
+            else:
+                veiculo = None
+            
+            interesse = InteresseCompra(nome=nome, telefone=telefone, email=email, mensagem=mensagem, veiculo=veiculo)
+            interesse.save()
+            
+            return JsonResponse({'mensagem': 'Interesse de compra registrado com sucesso!'})
+        else:
+            return JsonResponse({'mensagem': 'Apenas solicitações POST são suportadas.'}, status=405)
+
+    def post_form_venda(self, request):
+        return Response(status=201)  # Retorna uma resposta vazia com status 201 (Created)
+
 
 def get_filtro(request, filtro):
     if request.method == 'GET':
@@ -119,6 +185,22 @@ class VeiculosList(ListAPIView):
             veiculos = veiculos.order_by('-preco')  # Ordene em ordem descendente.
 
         return veiculos
+    
+        """
+        def get_queryset(self):
+            veiculos = Veiculo.objects.all()
+
+            veiculos = self.filtrar_por_tipo(veiculos)
+            veiculos = self.filtrar_por_faixa_de_preco(veiculos)
+            veiculos = self.filtrar_por_marca(veiculos)
+            veiculos = self.filtrar_por_modelo(veiculos)
+            veiculos = self.filtrar_por_estado_usado(veiculos)
+            veiculos = self.filtrar_por_leiloado(veiculos)
+
+            veiculos = self.ordenar(veiculos)
+
+            return veiculos
+        """
 
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
@@ -126,3 +208,51 @@ class VeiculosList(ListAPIView):
 
         
         return Response(serializer.data)
+    
+"""
+def filtrar_por_tipo(self, queryset):
+    tipo = self.request.query_params.get('tipo')
+    if tipo:
+        return queryset.filter(modelo__tipo=tipo)
+    return queryset
+
+def filtrar_por_faixa_de_preco(self, queryset):
+    faixa_preco = self.request.query_params.get('preco')
+    if faixa_preco:
+        min_price, max_price = self.get_faixa_preco(faixa_preco)
+        return queryset.filter(preco__gt=min_price, preco__lte=max_price)
+    return queryset
+
+def filtrar_por_marca(self, queryset):
+    marca = self.request.query_params.get('marca')
+    if marca:
+        return queryset.filter(modelo__marca__nome=marca)
+    return queryset
+
+def filtrar_por_modelo(self, queryset):
+    modelo = self.request.query_params.get('modelo')
+    if modelo:
+        return queryset.filter(modelo__nome=modelo)
+    return queryset
+
+def filtrar_por_estado_usado(self, queryset):
+    estado_usado = self.request.query_params.get('usado')
+    if estado_usado:
+        return queryset.filter(condicao__condicao_usado=estado_usado)
+    return queryset
+
+def filtrar_por_leiloado(self, queryset):
+    leiloado = self.request.query_params.get('leilao')
+    if leiloado:
+        return queryset.filter(condicao__leiloado=leiloado)
+    return queryset
+
+def ordenar(self, queryset):
+    sort = self.request.query_params.get('sort')
+    if sort == 'asc':
+        return queryset.order_by('preco')
+    elif sort == 'des':
+        return queryset.order_by('-preco')
+    return queryset
+
+"""

@@ -39,7 +39,7 @@ CREATE TABLE veiculos (
 CREATE TABLE interesse_venda (
 	id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
-	telefone VARCHAR(11) NOT NULL,
+	telefone VARCHAR(13) NOT NULL,
     email VARCHAR(150) NOT NULL,
     mensagem VARCHAR(1000) NOT NULL
 );
@@ -47,7 +47,7 @@ CREATE TABLE interesse_venda (
 CREATE TABLE interesse_compra (
 	id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
-	telefone VARCHAR(11) NOT NULL,
+	telefone VARCHAR(13) NOT NULL,
     email VARCHAR(150) NOT NULL,
     mensagem VARCHAR(1000) NOT NULL,
     
