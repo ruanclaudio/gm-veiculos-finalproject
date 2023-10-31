@@ -7,8 +7,7 @@ from django.core.paginator import Paginator
 from django.http import request, JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework.generics import ListAPIView
-from rest_framework.views import APIView
+from rest_framework.generics import ListCreateAPIView, ListAPIView
 
 """
 {
@@ -23,57 +22,13 @@ from rest_framework.views import APIView
 }
 """
 
-class FormulariosView(APIView):
-    serializer_class = VeiculoSerializer
+class FormCompraView(ListCreateAPIView):
+    queryset = InteresseCompra.objects.all()
+    serializer_class = InteresseCompraSerializer
 
-    '''
-    def get(self, request, *args, **kwargs):
-        form_type = request.data.get('form_type')
-        if form_type == 'compra':
-            form_compras = InteresseCompra.objects.all()
-            serializer_compras = InteresseCompraSerializer(form_compras)
-            return Response(serializer_compras.data)
-        elif form_type == 'venda':
-            form_vendas = InteresseVenda.objects.all()
-            serializer_vendas = InteresseVendaSerializer(form_vendas, many=True)
-            return Response(serializer_vendas.data)
-    '''
-
-    def post(self, request, *args, **kwargs):
-        form_type = request.data.get('form_type')
-        if form_type == 'compra':
-            return self.post_form_compra(request)
-        elif form_type == 'venda':
-            return self.post_form_venda(request)
-        else:
-            return JsonResponse({'mensagem': 'Tipo de formulário inválido.'}, status=400)
-    
-    def post_form_compra(self, request, form_type):
-        if form_type == 'compra':
-            nome = request.data.get('nome')
-            telefone = request.data.get('telefone')
-            email = request.data.get('email')
-            mensagem = request.data.get('mensagem')
-            veiculo_id = request.data.get('veiculo')
-            
-            if veiculo_id is not None:
-                try:
-                    veiculo = Veiculo.objects.get(pk=veiculo_id)
-                except Veiculo.DoesNotExist:
-                    return JsonResponse({'mensagem': 'Veículo não encontrado.'}, status=400)
-            else:
-                veiculo = None
-            
-            interesse = InteresseCompra(nome=nome, telefone=telefone, email=email, mensagem=mensagem, veiculo=veiculo)
-            interesse.save()
-            
-            return JsonResponse({'mensagem': 'Interesse de compra registrado com sucesso!'})
-        else:
-            return JsonResponse({'mensagem': 'Apenas solicitações POST são suportadas.'}, status=405)
-
-    def post_form_venda(self, request):
-        return Response(status=201)  # Retorna uma resposta vazia com status 201 (Created)
-
+class FormVendaView(ListCreateAPIView):
+    queryset = InteresseVenda.objects.all()
+    serializer_class = InteresseVendaSerializer
 
 def get_filtro(request, filtro):
     if request.method == 'GET':
@@ -255,4 +210,51 @@ def ordenar(self, queryset):
         return queryset.order_by('-preco')
     return queryset
 
+"""
+
+"""
+class FormulariosView(APIView):
+    def get(self, request, *args, **kwargs):
+        form_type = request.data.get('form_type')
+        if form_type == 'compra':
+            form_compras = InteresseCompra.objects.all()
+            serializer_compras = InteresseCompraSerializer(form_compras, many=True)
+            return Response(serializer_compras.data)
+        elif form_type == 'venda':
+            form_vendas = InteresseVenda.objects.all()
+            serializer_vendas = InteresseVendaSerializer(form_vendas, many=True)
+            return Response(serializer_vendas.data)
+
+    def post(self, request, *args, **kwargs):
+        form_type = request.data.get('form_type')
+        if form_type == 'compra':
+            return self.post_form_compra(request, form_type)
+        elif form_type == 'venda':
+            return self.post_form_venda(request)
+        else:
+            return JsonResponse({'mensagem': 'Tipo de formulário inválido.'}, status=400)
+    
+    def post_form_compra(self, request, form_type):
+        nome = request.data.get('nome')
+        telefone = request.data.get('telefone')
+        email = request.data.get('email')
+        mensagem = request.data.get('mensagem')
+        veiculo_id = request.data.get('veiculo')
+        
+        if veiculo_id is not None:
+            try:
+                veiculo = Veiculo.objects.get(pk=veiculo_id)
+            except Veiculo.DoesNotExist:
+                return JsonResponse({'mensagem': 'Veículo não encontrado.'}, status=400)
+        else:
+            return JsonResponse({'mensagem': 'Veículo não especificado.'}, status=400)
+        
+        interesse = InteresseCompra(nome=nome, telefone=telefone, email=email, mensagem=mensagem, veiculo=veiculo)
+        interesse.save()
+        
+        return JsonResponse({'mensagem': 'Interesse de compra registrado com sucesso!'})
+
+    def post_form_venda(self, request):
+        # Lógica para processar formulário de venda
+        return Response(status=201)  # Retorna uma resposta vazia com status 201 (Created)
 """
