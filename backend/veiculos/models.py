@@ -18,31 +18,6 @@ class CondicaoVeiculo(models.Model):
         managed = False
         db_table = 'condicoes_veiculos'
 
-
-class InteresseCompra(models.Model):
-    nome = models.CharField(max_length=100)
-    telefone = models.CharField(max_length=11)
-    email = models.CharField(max_length=150)
-    mensagem = models.CharField(max_length=1000)
-    estado = models.CharField(max_length=50, default='não analisado')
-    veiculo = models.ForeignKey('Veiculo', models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'interesse_compra'
-
-
-class InteresseVenda(models.Model):
-    nome = models.CharField(max_length=100)
-    telefone = models.CharField(max_length=11)
-    email = models.CharField(max_length=150)
-    mensagem = models.CharField(max_length=1000)
-
-    class Meta:
-        managed = False
-        db_table = 'interesse_venda'
-
-
 class Marca(models.Model):
     nome = models.CharField(max_length=50)
 
@@ -69,7 +44,38 @@ class Veiculo(models.Model):
     pagamento = models.CharField(max_length=50)
     modelo = models.ForeignKey(Modelo, models.DO_NOTHING)
     condicao = models.ForeignKey(CondicaoVeiculo, models.DO_NOTHING)
+    image_path = models.ImageField(upload_to='images/', null=False)
+    
 
     class Meta:
         managed = False
         db_table = 'veiculos'
+
+"""
+formularios de interesse de compra e venda
+"""
+
+class InteresseCompra(models.Model):
+    nome = models.CharField(max_length=100)
+    telefone = models.CharField(max_length=11)
+    email = models.CharField(max_length=150)
+    mensagem = models.CharField(max_length=1000)
+    estado = models.CharField(max_length=50, default='não analisado')
+    veiculo = models.ForeignKey('Veiculo', models.DO_NOTHING)
+    image_path = models.ImageField(upload_to='images/', null=False)
+
+    class Meta:
+        managed = False
+        db_table = 'interesse_compra'
+
+
+class InteresseVenda(models.Model):
+    nome = models.CharField(max_length=100)
+    telefone = models.CharField(max_length=11)
+    email = models.CharField(max_length=150)
+    mensagem = models.CharField(max_length=1000)
+    image_path = models.ImageField(upload_to='images/', null=False)
+    
+    class Meta:
+        managed = False
+        db_table = 'interesse_venda'

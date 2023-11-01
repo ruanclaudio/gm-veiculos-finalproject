@@ -68,7 +68,7 @@ def receber_interesse_compra(request):
     else:
         return JsonResponse({'mensagem': 'Apenas solicitações POST são suportadas.'})
 
-class VeiculosList(ListAPIView):
+class VeiculosList(ListCreateAPIView):
     serializer_class = VeiculoSerializer
 
     def get_veiculo(self, veic_id):
