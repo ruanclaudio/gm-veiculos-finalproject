@@ -27,16 +27,9 @@ class VeiculoSerializer(ModelSerializer):
         model = Veiculo
         fields = '__all__'
 
-
-class FiltroMarcaSerializer(ModelSerializer):
-    class Meta:
-        model = Marca
-        fields = ['nome']
-    
-class FiltroModeloSerializer(ModelSerializer):
-    class Meta:
-        model = Modelo
-        fields = ['nome']
+"""
+formularios de interesse de compra e venda
+"""
 
 class InteresseCompraSerializer(ModeloSerializer):
     class Meta:
@@ -47,3 +40,17 @@ class InteresseVendaSerializer(ModeloSerializer):
     class Meta:
         model = InteresseVenda
         fields = "__all__"
+
+"""
+serialializadores para campos especificos
+"""
+
+class FiltroMarcaSerializer(ModelSerializer):
+    class Meta:
+        model = Marca
+        fields = ['nome']
+    
+class FiltroModeloSerializer(ModelSerializer):
+    class Meta:
+        model = Modelo
+        fields = ['nome']
