@@ -1,41 +1,39 @@
--- Inserir dados na tabela condicoes_veiculos
-INSERT INTO condicoes_veiculos (condicao_usado, ano, leiloado, quilometragem)
-VALUES
-    (TRUE, '2019', FALSE, 1000),
-    (TRUE, '2020', FALSE, 573),
-    (TRUE, '2015', TRUE, 9437),
-    (FALSE, '2021', FALSE, 0);
+INSERT INTO condicoes_veiculos (condicao_usado, ano, leiloado, quilometragem) VALUES
+(true, 2018, false, 50000),
+(false, 2020, false, 10000),
+(true, 2015, false, 80000),
+(true, 2017, false, 60000),
+(false, 2019, false, 15000),
+(true, 2016, false, 70000);
 
--- Inserir dados na tabela marcas
-INSERT INTO marcas (nome)
-VALUES
-    ('Toyota'),
-    ('Honda'),
-    ('Ford'),
-    ('Volkswagen');
+INSERT INTO marcas (nome) VALUES
+('Chevrolet'),
+('Ford'),
+('Volkswagen'),
+('Toyota'),
+('Honda'),
+('Hyundai');
 
--- Inserir dados na tabela modelos
-INSERT INTO modelos (nome, tipo, marca_id)
-VALUES
-    ('Corolla', 'carro', 1),
-    ('Bis', 'moto', 2),
-    ('Focus', 'carro', 3),
-    ('Golf', 'carro', 4);
+INSERT INTO modelos (nome, tipo, marca_id) VALUES
+('Onix', 'carro', 1),
+('Ka', 'carro', 2),
+('Gol', 'carro', 3),
+('Corolla', 'caroo', 4),
+('Civic', 'carro', 5),
+('HB20', 'carro', 6);
 
--- Inserir dados na tabela veiculos
-INSERT INTO veiculos (preco, pagamento, modelo_id, condicao_id)
-VALUES
-    (25000.00, 'À vista', 1, 1),
-    (22000.00, 'Financiamento', 2, 2),
-    (15000.00, 'À vista', 3, 3),
-    (18000.00, 'Financiamento', 4, 4);
-    
--- Inserir dados na tabela interesse_venda
-INSERT INTO interesse_venda (nome, telefone, email, mensagem)
-VALUES
-('Lucas', '1234567890', 'exemplo@email.com', 'Estou interessado neste veículo.');
+INSERT INTO veiculos (preco, pagamento, modelo_id, condicao_id) VALUES
+(45000.00, 'À vista', 1, 1),
+(35000.00, 'Financiado', 2, 2),
+(30000.00, 'À vista', 3, 3),
+(55000.00, 'Financiado', 4, 4),
+(40000.00, 'À vista', 5, 5),
+(32000.00, 'Financiado', 6, 6);
 
--- Inserir dados na tabela interesse_venda_veiculos
-INSERT INTO interesse_compra (nome, telefone, email, mensagem, veiculo_id)
-VALUES
-('João', '9876543210', 'exemplo2@email.com', 'Gostaria de mais informações sobre este veículo.', 1);
+INSERT INTO interesse_venda (nome, telefone, email, mensagem) VALUES
+('João Silva', '987654321', 'joao@email.com', 'Tenho interesse em vender meu veículo.'),
+('Carlos Santos', '987654321', 'carlos@email.com', 'Tenho interesse em vender meu veículo.');
+
+INSERT INTO interesse_compra (nome, telefone, email, mensagem, veiculo_id) VALUES
+('Maria Souza', '987654321', 'maria@email.com', 'Tenho interesse em comprar um veículo.', 1),
+('Ana Oliveira', '987654321', 'ana@email.com', 'Tenho interesse em comprar um veículo.', 2);
