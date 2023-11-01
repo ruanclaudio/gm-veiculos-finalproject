@@ -11,14 +11,11 @@ from rest_framework.generics import ListCreateAPIView, ListAPIView
 
 """
 {
-    {
-        "id": 1,  // O ID será gerado automaticamente no banco de dados
-        "nome": "Nome do Cliente",
-        "telefone": "1234567890",
-        "email": "cliente@example.com",
-        "mensagem": "Mensagem de interesse na compra de um veículo.",
-        "veiculo_id": 1  // Substitua pelo ID do veículo ao qual o interesse está relacionado
-    }
+    "nome": "",
+    "telefone": "",
+    "email": "",
+    "mensagem": "",
+    "veiculo_id": 
 }
 """
 

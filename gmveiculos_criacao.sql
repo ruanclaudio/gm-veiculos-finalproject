@@ -50,6 +50,7 @@ CREATE TABLE interesse_compra (
 	telefone VARCHAR(13) NOT NULL,
     email VARCHAR(150) NOT NULL,
     mensagem VARCHAR(1000) NOT NULL,
+    estado VARCHAR(50) DEFAULT "não analisado",
     
     veiculo_id INT NOT NULL,
     

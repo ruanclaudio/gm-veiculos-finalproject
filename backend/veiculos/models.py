@@ -24,6 +24,7 @@ class InteresseCompra(models.Model):
     telefone = models.CharField(max_length=11)
     email = models.CharField(max_length=150)
     mensagem = models.CharField(max_length=1000)
+    estado = models.CharField(max_length=50, default='não analisado')
     veiculo = models.ForeignKey('Veiculo', models.DO_NOTHING)
 
     class Meta:
