@@ -28,6 +28,7 @@ CREATE TABLE veiculos (
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	preco DECIMAL(10, 2) NOT NULL,
 	pagamento VARCHAR(50) NOT NULL,
+    imagem VARCHAR(100),
 
 	modelo_id INT NOT NULL,
 	condicao_id INT NOT NULL,
@@ -41,7 +42,8 @@ CREATE TABLE interesse_venda (
     nome VARCHAR(100) NOT NULL,
 	telefone VARCHAR(13) NOT NULL,
     email VARCHAR(150) NOT NULL,
-    mensagem VARCHAR(1000) NOT NULL
+    mensagem VARCHAR(1000) NOT NULL,
+    imagem VARCHAR(100)
 );
 
 CREATE TABLE interesse_compra (
