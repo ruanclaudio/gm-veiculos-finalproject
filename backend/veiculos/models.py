@@ -44,7 +44,7 @@ class Veiculo(models.Model):
     pagamento = models.CharField(max_length=50)
     modelo = models.ForeignKey(Modelo, models.DO_NOTHING)
     condicao = models.ForeignKey(CondicaoVeiculo, models.DO_NOTHING)
-    image_path = models.ImageField(upload_to='images/', null=False)
+    imagem = models.ImageField(upload_to="")
     
 
     class Meta:
@@ -74,7 +74,7 @@ class InteresseVenda(models.Model):
     telefone = models.CharField(max_length=11)
     email = models.CharField(max_length=150)
     mensagem = models.CharField(max_length=1000)
-    image_path = models.ImageField(upload_to='images/', null=False)
+    imagem = models.ImageField(upload_to="")
     
     class Meta:
         managed = False
