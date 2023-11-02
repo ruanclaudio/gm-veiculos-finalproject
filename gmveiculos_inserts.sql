@@ -22,17 +22,17 @@ INSERT INTO modelos (nome, tipo, marca_id) VALUES
 ('Civic', 'carro', 5),
 ('HB20', 'carro', 6);
 
-INSERT INTO veiculos (preco, pagamento, modelo_id, condicao_id) VALUES
-(45000.00, 'À vista', 1, 1),
-(35000.00, 'Financiado', 2, 2),
-(30000.00, 'À vista', 3, 3),
-(55000.00, 'Financiado', 4, 4),
-(40000.00, 'À vista', 5, 5),
-(32000.00, 'Financiado', 6, 6);
+INSERT INTO veiculos (preco, pagamento, imagem, modelo_id, condicao_id) VALUES
+(45000.00, 'À vista', 'carro_test.jpeg', 1, 1),
+(35000.00, 'Financiado', 'carro_test.jpeg', 2, 2),
+(30000.00, 'À vista', 'carro_test.jpeg', 3, 3),
+(55000.00, 'Financiado', 'carro_test.jpeg', 4, 4),
+(40000.00, 'À vista', 'carro_test.jpeg', 5, 5),
+(32000.00, 'Financiado', 'carro_test.jpeg', 6, 6);
 
-INSERT INTO interesse_venda (nome, telefone, email, mensagem) VALUES
-('João Silva', '987654321', 'joao@email.com', 'Tenho interesse em vender meu veículo.'),
-('Carlos Santos', '987654321', 'carlos@email.com', 'Tenho interesse em vender meu veículo.');
+INSERT INTO interesse_venda (nome, telefone, email, mensagem, imagem) VALUES
+('João Silva', '987654321', 'joao@email.com', 'Tenho interesse em vender meu veículo.', 'carro_test.jpeg'),
+('Carlos Santos', '987654321', 'carlos@email.com', 'Tenho interesse em vender meu veículo.', 'carro_test.jpeg');
 
 INSERT INTO interesse_compra (nome, telefone, email, mensagem, veiculo_id) VALUES
 ('Maria Souza', '987654321', 'maria@email.com', 'Tenho interesse em comprar um veículo.', 1),
