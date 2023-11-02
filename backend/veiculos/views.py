@@ -8,6 +8,7 @@ from django.http import request, JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.generics import ListCreateAPIView, ListAPIView
+from rest_framework.parsers import FormParser, MultiPartParser
 
 """
 {
@@ -20,6 +21,7 @@ from rest_framework.generics import ListCreateAPIView, ListAPIView
 """
 
 class FormCompraView(ListCreateAPIView):
+    parser_classes = (MultiPartParser, FormParser)
     queryset = InteresseCompra.objects.all()
     serializer_class = InteresseCompraSerializer
 
@@ -39,36 +41,7 @@ def get_filtro(request, filtro):
             serializer = FiltroMarcaSerializer(marca, many=True)
             return JsonResponse(serializer.data, safe=False)
 
-def receber_interesse_venda(request):
-    if request.method == 'POST':
-        telefone = request.POST.get('telefone')
-        email = request.POST.get('email')
-        mensagem = request.POST.get('mensagem')
-        imagem_data = request.data.get('imagem')
-        
-        interesse = InteresseVenda(telefone=telefone, email=email, 
-                                   mensagem=mensagem, imagem=imagem_data)
-        interesse.save()
-        
-        return JsonResponse({'mensagem': 'Interesse de venda registrado com sucesso!'})
-    else:
-        return JsonResponse({'mensagem': 'Apenas solicitações POST são suportadas.'})
-    
-def receber_interesse_compra(request):
-    if request.method == 'POST':
-        nome = request.POST.get('nome')
-        telefone = request.POST.get('telefone')
-        email = request.POST.get('email')
-        mensagem = request.POST.get('mensagem')
-        veiculo = request.POST.get('veiculo')
-        
-        interesse = InteresseCompra(nome = nome, telefone=telefone, 
-                                    email=email, mensagem=mensagem, veiculo = veiculo)
-        interesse.save()
-        
-        return JsonResponse({'mensagem': 'Interesse de venda registrado com sucesso!'})
-    else:
-        return JsonResponse({'mensagem': 'Apenas solicitações POST são suportadas.'})
+
 
 class VeiculosList(ListCreateAPIView):
     serializer_class = VeiculoSerializer
