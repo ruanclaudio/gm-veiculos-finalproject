@@ -1,13 +1,12 @@
 <script lang="ts">
-    import local from "$lib/assets/local.png"
-
     const formatter = new Intl.NumberFormat('pt-BR', {});
 
     export let veiculo: any
+
 </script>
 
 <div class="resultado">
-    <img src="{local}" alt="" srcset="">
+    <img src={veiculo.imagem} alt="" srcset="">
 
     <div class="text">
         <div class="row1">

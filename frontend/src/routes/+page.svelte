@@ -29,7 +29,7 @@
 
 </script>
 
-<img class="banner" src="{ad}" alt="ad">
+<img class="banner" src={ad} alt="ad">
 
 <main>
     <div class="context">
@@ -76,6 +76,7 @@ h4 {
     padding-block: 12px;
 
     width: 100%;
+    max-height: 500px;
 }
 
 .sort {
