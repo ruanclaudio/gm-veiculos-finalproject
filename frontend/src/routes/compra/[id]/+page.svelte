@@ -6,6 +6,27 @@
 
     import { page } from '$app/stores';
 
+    let formData = new FormData()
+
+    let nomeValue: any
+    let telValue: any
+    let emailValue: any
+    let mensagemValue: any
+
+    async function SendHandle() {
+
+        formData.set("nome", nomeValue.value)
+        formData.set("telefone", telValue.value)
+        formData.set("email", emailValue.value)
+        formData.set("mensagem", mensagemValue.value)
+        formData.set("veiculo", veiculoId)
+
+        let responseInfo = await fetch("http://127.0.0.1:8000/veiculos/form-compra/", {
+            method: "POST",
+            body: formData,
+        });
+    }
+
     let veiculoId: any = $page.params.id
     
     let veiculos: any[] = []
@@ -24,29 +45,29 @@
         <form action="">
             <div class="nome">
                 <label for="nome">Nome: </label> <br>
-                <input type="text" name="nome" id="nome">
+                <input type="text" name="nome" id="nome" bind:this={nomeValue}>
             </div>
 
             <div class="tel">
                 <label for="tel">Tel: </label> <br>
-                <input type="tel" name="tel" id="tel">
+                <input type="tel" name="tel" id="tel" bind:this={telValue}>
             </div>
 
             <div class="email">
                 <label for="email">Email: </label> <br>
-                <input type="email" name="email" id="email">
+                <input type="email" name="email" id="email" bind:this={emailValue}>
             </div>
 
             <div class="mensagem">
                 <label for="mensagem">Mensagem: </label> <br>
-                <textarea name="mensagem" id="mensagem" rows="6" ></textarea>
+                <textarea name="mensagem" id="mensagem" rows="6" bind:this={mensagemValue}></textarea>
             </div>
 
             {#each veiculos as veiculo (veiculo.id)}
                 <VeiculoDisplayForm {veiculo}/>
             {/each}
 
-            <button id="btn-form" type="submit">Enviar</button>
+            <button id="btn-form" type="submit" on:click={SendHandle}>Enviar</button>
         </form>
     </div>
 </main>
