@@ -62,7 +62,6 @@ class InteresseCompra(models.Model):
     mensagem = models.CharField(max_length=1000)
     estado = models.CharField(max_length=50, default='não analisado')
     veiculo = models.ForeignKey('Veiculo', models.DO_NOTHING)
-    image_path = models.ImageField(upload_to='images/', null=False)
 
     class Meta:
         managed = False
