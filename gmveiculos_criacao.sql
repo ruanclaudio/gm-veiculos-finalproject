@@ -28,6 +28,7 @@ CREATE TABLE veiculos (
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	preco DECIMAL(10, 2) NOT NULL,
 	pagamento VARCHAR(50) NOT NULL,
+    porcentagem_desconto INT,
     imagem VARCHAR(100),
 
 	modelo_id INT NOT NULL,
