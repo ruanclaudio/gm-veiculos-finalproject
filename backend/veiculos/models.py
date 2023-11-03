@@ -36,6 +36,7 @@ class Modelo(models.Model):
 class Veiculo(models.Model):
     preco = models.DecimalField(max_digits=10, decimal_places=2)
     pagamento = models.CharField(max_length=50)
+    porcentagem_desconto = models.IntegerField()
     modelo = models.ForeignKey(Modelo, models.DO_NOTHING)
     condicao = models.ForeignKey(CondicaoVeiculo, models.DO_NOTHING)
     imagem = models.ImageField(upload_to="veiculos/")
