@@ -22,13 +22,13 @@ INSERT INTO modelos (nome, tipo, marca_id) VALUES
 ('Civic', 'carro', 5),
 ('HB20', 'carro', 6);
 
-INSERT INTO veiculos (preco, pagamento, imagem, modelo_id, condicao_id) VALUES
-(45000.00, 'À vista', 'carro_test.jpeg', 1, 1),
-(35000.00, 'Financiado', 'carro_test.jpeg', 2, 2),
-(30000.00, 'À vista', 'carro_test.jpeg', 3, 3),
-(55000.00, 'Financiado', 'carro_test.jpeg', 4, 4),
-(40000.00, 'À vista', 'carro_test.jpeg', 5, 5),
-(32000.00, 'Financiado', 'carro_test.jpeg', 6, 6);
+INSERT INTO veiculos (preco, pagamento, porcentagem_desconto, imagem, modelo_id, condicao_id) VALUES
+(45000.00, 'À vista', 10, 'carro_test.jpeg', 1, 1),
+(35000.00, 'Financiado', 10, 'carro_test.jpeg', 2, 2),
+(30000.00, 'À vista', 10, 'carro_test.jpeg', 3, 3),
+(55000.00, 'Financiado', 10, 'carro_test.jpeg', 4, 4),
+(40000.00, 'À vista', 10, 'carro_test.jpeg', 5, 5),
+(32000.00, 'Financiado', 10, 'carro_test.jpeg', 6, 6);
 
 INSERT INTO interesse_venda (nome, telefone, email, mensagem, imagem) VALUES
 ('João Silva', '987654321', 'joao@email.com', 'Tenho interesse em vender meu veículo.', 'carro_test.jpeg'),
