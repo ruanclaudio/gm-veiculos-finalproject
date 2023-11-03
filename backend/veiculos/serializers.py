@@ -7,10 +7,12 @@ class CondicaoVeiculoSerializer(ModelSerializer):
         model = CondicaoVeiculo
         fields = ['condicao_usado', 'ano', 'leiloado', 'quilometragem']
 
+
 class MarcaSerializer(ModelSerializer):
     class Meta:
         model = Marca
         fields = '__all__'
+
     
 class ModeloSerializer(ModelSerializer):
     marca = serializers.StringRelatedField()
@@ -19,6 +21,7 @@ class ModeloSerializer(ModelSerializer):
         model = Modelo
         fields = ['nome', 'tipo', 'marca']
 
+
 class VeiculoSerializer(ModelSerializer):
     modelo = ModeloSerializer()
     condicao = CondicaoVeiculoSerializer()
@@ -26,6 +29,7 @@ class VeiculoSerializer(ModelSerializer):
     class Meta:
         model = Veiculo
         fields = '__all__'
+
 
 """
 formularios de interesse de compra e venda
@@ -36,10 +40,12 @@ class InteresseCompraSerializer(ModeloSerializer):
         model = InteresseCompra
         fields = "__all__"
 
+
 class InteresseVendaSerializer(ModeloSerializer):
     class Meta:
         model = InteresseVenda
         fields = "__all__"
+
 
 """
 serialializadores para campos especificos
@@ -49,6 +55,7 @@ class FiltroMarcaSerializer(ModelSerializer):
     class Meta:
         model = Marca
         fields = ['nome']
+
     
 class FiltroModeloSerializer(ModelSerializer):
     class Meta:
