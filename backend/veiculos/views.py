@@ -10,16 +10,6 @@ from rest_framework.response import Response
 from rest_framework.generics import ListCreateAPIView, ListAPIView
 from rest_framework.parsers import FormParser, MultiPartParser
 
-"""
-{
-    "nome": "",
-    "telefone": "",
-    "email": "",
-    "mensagem": "",
-    "veiculo_id": 
-}
-"""
-
 class FormCompraView(ListCreateAPIView):
     parser_classes = (MultiPartParser, FormParser)
     queryset = InteresseCompra.objects.all()

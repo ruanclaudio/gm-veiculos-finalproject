@@ -37,3 +37,6 @@ INSERT INTO interesse_venda (nome, telefone, email, mensagem, imagem) VALUES
 INSERT INTO interesse_compra (nome, telefone, email, mensagem, veiculo_id) VALUES
 ('Maria Souza', '987654321', 'maria@email.com', 'Tenho interesse em comprar um veículo.', 1),
 ('Ana Oliveira', '987654321', 'ana@email.com', 'Tenho interesse em comprar um veículo.', 2);
+
+INSERT INTO promocoes (nome, imagem_banner, ativa) VALUES
+('Natal','carro_test.jpeg', true);

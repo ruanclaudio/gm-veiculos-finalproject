@@ -52,9 +52,16 @@ CREATE TABLE interesse_compra (
 	telefone VARCHAR(13) NOT NULL,
     email VARCHAR(150) NOT NULL,
     mensagem VARCHAR(1000) NOT NULL,
-    estado VARCHAR(50) DEFAULT "não analisado",
+    estado VARCHAR(50) DEFAULT "Não Analisado",
     
     veiculo_id INT NOT NULL,
     
     FOREIGN KEY (veiculo_id) REFERENCES veiculos(id)
+);
+
+CREATE TABLE promocoes (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    imagem_banner VARCHAR(100),
+    ativa BOOLEAN NOT NULL DEFAULT 0
 );

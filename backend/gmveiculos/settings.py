@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # apps
     'veiculos',
+    'personalizacao',
     # others
     'rest_framework',
     'django_filters',
