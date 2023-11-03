@@ -1,6 +1,7 @@
 from decimal import Decimal
 from .models import InteresseCompra, InteresseVenda, Veiculo, Modelo, Marca
 from .serializers import *
+from copy import deepcopy
 
 from django.shortcuts import render
 from django.core.paginator import Paginator
@@ -124,21 +125,28 @@ class VeiculosList(ListCreateAPIView):
         queryset = self.get_queryset()
         serializer = self.get_serializer(queryset, many=True)
 
+        response_data = []
+
         for veiculo_data in serializer.data:
-            if(veiculo_data['desconto_ativo'] == True): 
+            if veiculo_data['desconto_ativo'] == True: 
                 preco = float(veiculo_data['preco'])
                 porcentagem_desconto = float(veiculo_data['porcentagem_desconto'])
 
                 # Calcular o valor com desconto
                 valor_desconto = preco - (preco * (porcentagem_desconto / 100))
-                valor_desconto = f"{valor_desconto:.2f}"
+                valor_desconto = round(valor_desconto, 2)
 
                 veiculo_data['valor_desconto'] = valor_desconto
             else:
-                veiculo_data['porcentagem_desconto'] = None
-                veiculo_data['valor_desconto'] = None
+                veiculo_data_copy = veiculo_data.copy()
+                veiculo_data_copy['porcentagem_desconto'] = None
+                veiculo_data_copy['valor_desconto'] = None
+                response_data.append(veiculo_data_copy)
+            response_data.append(veiculo_data)
 
-        return Response(serializer.data)
+        return Response(response_data)
+
+
     
 """
 def filtrar_por_tipo(self, queryset):
