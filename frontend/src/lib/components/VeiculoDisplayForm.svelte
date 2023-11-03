@@ -100,11 +100,6 @@ img {
 }
 
 @media screen and (max-width: 1400px) {
-
-    img {
-        width: 100%;
-        height: 100%;
-    }
     
     .resultado {
         flex-direction: column;
