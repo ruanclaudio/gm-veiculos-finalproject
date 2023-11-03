@@ -145,14 +145,18 @@ select {
     }
 
     main {
-    padding: 12px 18px;
-}
+        padding: 12px 64px;
+    }
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 650px) {
     h4,
     select {
         font-size: 16px;
+    }
+
+    main {
+        padding: 12px 24px;
     }
 }
 </style>

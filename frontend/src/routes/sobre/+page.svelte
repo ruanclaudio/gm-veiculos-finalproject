@@ -7,9 +7,9 @@
 
     <div class="row">
         <div class="text">
-            <p>Há 18 anos atuando no mercado de automóveis, Mauro Moretto, proprietário da GM Veículos, mantém sua tradição de honestidade, solidez e confiança.</p>
+            <p>Há 18 anos atuando no mercado de automóveis, Ivanildo Gomes, proprietário da GM Veículos, mantém sua tradição de honestidade, solidez e confiança.</p>
         
-            <p>Com a proposta de oferecer as melhores opções para venda, troca ou compra de veículos novos ou seminovos, A GM Veículos mantém em seu estoque veículos revisados, com garantia de procedência para proporcionar sempre tranqüilidade a você cliente.</p>
+            <p>Com a proposta de oferecer as melhores opções para venda, troca ou compra de veículos novos ou seminovos, A GM Veículos mantém em seu estoque veículos revisados, com garantia de procedência para proporcionar sempre tranquilidade a você cliente.</p>
         
             <p>Nossa equipe, formada por profissionais em constante aperfeiçoamento terá o maior prazer em atendê-lo e dirimir todas as dúvidas antes de fazer um bom negócio.</p>
         
