@@ -11,6 +11,8 @@
 
     let veiculos: any[] = []
 
+    let bannerImg: any
+
     const handleFilter = (event: any) => {
 		
 		veiculos = event.detail;
@@ -23,13 +25,18 @@
 
     onMount(async () => {
         let resp = await fetch("http://127.0.0.1:8000/veiculos")
-
+        
         veiculos = await resp.json()
+
+        let respBanner = await fetch("http://127.0.0.1:8000/personalizacao/promocoes")
+
+        let bannerInfo = await respBanner.json()
+        bannerImg = bannerInfo[0].imagem_banner
     })
 
 </script>
 
-<img class="banner" src={ad} alt="ad">
+<img class="banner" src={bannerImg} alt="banner promocional">
 
 <main>
     <div class="context">
