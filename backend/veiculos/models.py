@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 
 
 class CondicaoVeiculo(models.Model):
@@ -37,6 +39,7 @@ class Veiculo(models.Model):
     preco = models.DecimalField(max_digits=10, decimal_places=2)
     pagamento = models.CharField(max_length=50)
     porcentagem_desconto = models.IntegerField()
+    desconto_ativo = models.BooleanField()
     modelo = models.ForeignKey(Modelo, models.DO_NOTHING)
     condicao = models.ForeignKey(CondicaoVeiculo, models.DO_NOTHING)
     imagem = models.ImageField(upload_to="veiculos/")
@@ -45,6 +48,13 @@ class Veiculo(models.Model):
     class Meta:
         managed = False
         db_table = 'veiculos'
+
+
+# signal para desativar desconto caso a poorcentagem de desconto seja definida como 0
+@receiver(pre_save, sender=Veiculo)
+def definir_estado_promocao(sender, instance, **kwargs):
+    if instance.porcentagem_desconto == 0:
+        instance.desconto_ativo = False
 
 
 """
