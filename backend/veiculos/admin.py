@@ -6,6 +6,7 @@ from django.urls import reverse
 # Register your models here.
 admin.site.register(CondicaoVeiculo)
 admin.site.register(Marca)
+admin.site.register(Modelo)
 admin.site.register(InteresseCompra)
 admin.site.register(InteresseVenda)
 
